@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:game/firstpage.dart';
-import 'package:game/secondpage.dart';
 
 void main() {
   runApp(const MainApp());
@@ -14,8 +12,6 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       routes: {
-        '/FirstPage': (context) => FirstPage(),
-        '/SecondPage': (context) => SecondPage(),
         '/HomePage': (context) => HomeScreen(),
       },
       home: const HomeScreen(), // Use separate widget
@@ -44,17 +40,7 @@ class HomeScreen extends StatelessWidget {
           const Padding(padding: EdgeInsets.only(right: 10)),
         ],
       ),
-      body: Center(
-        child: ElevatedButton(
-          child: const Text(
-            "GO TO FIRST PAGE",
-            style: TextStyle(color: Colors.green),
-          ),
-          onPressed: () {
-            Navigator.pushNamed(context, '/FirstPage');
-          },
-        ),
-      ),
+     
     );
   }
 }
