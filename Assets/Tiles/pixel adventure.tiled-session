@@ -1,12 +1,22 @@
 {
     "activeFile": "",
     "expandedProjectPaths": [
+        "."
     ],
     "fileStates": {
+        "C:/Users/kynm/Desktop/MobileGame/Assets/Tile/pixel adventure.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/kynm/Desktop/MobileGame/assets/tiles/pixel adventure.tsx": {
+            "scaleInEditor": 1
+        }
     },
+    "last.externalTilesetPath": "C:/Users/kynm/Desktop/MobileGame/assets/tiles",
+    "last.imagePath": "C:/Users/kynm/Desktop/MobileGame/assets/images/Terrain",
     "openFiles": [
     ],
     "project": "pixel adventure.tiled-project",
     "recentFiles": [
+        "C:/Users/kynm/Desktop/MobileGame/assets/tiles/pixel adventure.tsx"
     ]
 }

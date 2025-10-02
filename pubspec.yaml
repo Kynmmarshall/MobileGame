@@ -12,11 +12,6 @@ dependencies:
   flame: ^1.32.0
   flame_tiled: ^3.0.7
 
-assets:
-  - assets/tiles/
-  - assets/tiles/Level-01.tmx
-
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -24,3 +19,6 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/tiles/
+    - assets
