@@ -11,7 +11,8 @@ class PixelAdventure extends FlameGame{
   @override
   FutureOr<void> onLoad() {
 
-    cam= CameraComponent.withFixedResolution(world: world, width: 640, height: 360);cam.viewfinder.anchor= Anchor.topLeft;
+    cam= CameraComponent.withFixedResolution(world: world, width: 640, height: 360);
+    cam.viewfinder.anchor= Anchor.topLeft;
      addAll([cam,world]);  
     return super.onLoad();
   } 

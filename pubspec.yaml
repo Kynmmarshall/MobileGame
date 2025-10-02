@@ -13,7 +13,9 @@ dependencies:
   flame_tiled: ^3.0.7
 
 assets:
-  -Assets/Tiles/
+  - assets/tiles/
+  - assets/tiles/Level-01.tmx
+
 
 dev_dependencies:
   flutter_test:
