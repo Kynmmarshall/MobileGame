@@ -1,4 +1,8 @@
 {
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
     "activeFile": "Level-01.tmx",
     "expandedProjectPaths": [
         "."
@@ -12,11 +16,14 @@
             "scaleInEditor": 1
         },
         "Level-01.tmx": {
+            "expandedObjectLayers": [
+                4
+            ],
             "scale": 1.0880468749999999,
-            "selectedLayer": 0,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 121.31830257772671,
-                "y": 187.03238314066206
+                "x": 241.25798808070655,
+                "y": 43.65620736698497
             }
         },
         "pixel adventure.tsx": {
@@ -26,6 +33,11 @@
     },
     "last.externalTilesetPath": "C:/Users/kynm/Desktop/MobileGame/assets/tiles",
     "last.imagePath": "C:/Users/kynm/Desktop/MobileGame/assets/images/Terrain",
+    "map.height": 23,
+    "map.lastUsedFormat": "tmx",
+    "map.tileHeight": 16,
+    "map.tileWidth": 16,
+    "map.width": 40,
     "openFiles": [
         "pixel adventure.tsx",
         "Level-01.tmx"
