@@ -12,11 +12,8 @@
             "scaleInDock": 1
         },
         "C:/Users/kynm/Desktop/MobileGame/assets/tiles/Level-02.tmx": {
-            "expandedObjectLayers": [
-                2
-            ],
             "scale": 1.5229687499999998,
-            "selectedLayer": 1,
+            "selectedLayer": 0,
             "viewCenter": {
                 "x": 320.09849184364424,
                 "y": 184.1797476146507
@@ -31,9 +28,9 @@
                 4
             ],
             "scale": 1.0880468749999999,
-            "selectedLayer": 0,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 95.12457815753572,
+                "x": 380.0387736052273,
                 "y": 271.5875637251383
             }
         },
@@ -51,11 +48,13 @@
     "map.width": 40,
     "openFiles": [
         "pixel adventure.tsx",
-        "Level-01.tmx"
+        "Level-01.tmx",
+        "C:/Users/kynm/Desktop/MobileGame/assets/tiles/Level-02.tmx"
     ],
     "project": "pixel adventure.tiled-project",
     "recentFiles": [
         "pixel adventure.tsx",
+        "C:/Users/kynm/Desktop/MobileGame/assets/tiles/Level-02.tmx",
         "Level-01.tmx",
         "C:/Users/kynm/Desktop/MobileGame/assets/tiles/pixel adventure.tsx"
     ]
