@@ -13,7 +13,7 @@ class Level extends World{
     level= await TiledComponent.load("Level-01.tmx", Vector2.all(16));
     
     add(level);
-    add(Player());
+    add(Player(Character: 'Ninja Frog'));
     return super.onLoad();
   }
 }
