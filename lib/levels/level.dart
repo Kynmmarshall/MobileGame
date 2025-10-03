@@ -13,7 +13,18 @@ class Level extends World{
     level= await TiledComponent.load("Level-01.tmx", Vector2.all(16));
     
     add(level);
-    add(Player(Character: 'Ninja Frog'));
+    
+    final SpawnPointLayer=level.tileMap.getLayer<ObjectGroup>("SpawnPoints");
+    
+    for (final SpawnPoint in SpawnPointLayer!.objects){
+      switch (SpawnPoint.class_){
+        case 'Player':
+          final player = Player(Character: 'Ninja Frog');
+          add(player);
+          break;
+          default:
+      }
+    }
     return super.onLoad();
   }
 }
