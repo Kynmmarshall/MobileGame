@@ -14,7 +14,7 @@ Player({ position, this.character = 'Ninja Frog'}): super(position: position);
 late final SpriteAnimation idleAnimation,runningAnimation;
 final double stepTime=0.05;
 
-
+double horizontalMovement = 0;
 double moveSpeed = 100;
 Vector2 velocity = Vector2(0, 0);
 
@@ -34,11 +34,14 @@ Vector2 velocity = Vector2(0, 0);
 
  @override
   bool onKeyEvent(KeyEvent event, Set<LogicalKeyboardKey> keysPressed) {
+    horizontalMovement = 0;
     final isLeftKeyPressed = keysPressed.contains(LogicalKeyboardKey.arrowLeft) ||
           keysPressed.contains(LogicalKeyboardKey.keyA);
     final isRightKeyPressed = keysPressed.contains(LogicalKeyboardKey.arrowRight) ||
           keysPressed.contains(LogicalKeyboardKey.keyD);
     
+    horizontalMovement += isLeftKeyPressed ? -1 : 0;
+    horizontalMovement += isRightKeyPressed ? 1 : 0;
     
     return super.onKeyEvent(event, keysPressed);
   }
@@ -69,7 +72,7 @@ Vector2 velocity = Vector2(0, 0);
   void _updatePosition(double dt) {
 
     
-    //velocity= Vector2(dirX, 0.0);
+    velocity.x= horizontalMovement * moveSpeed;
     position.x += velocity.x * dt;
   }
 }
