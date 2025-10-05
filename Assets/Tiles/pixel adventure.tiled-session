@@ -12,6 +12,9 @@
             "scaleInDock": 1
         },
         "C:/Users/kynm/Desktop/MobileGame/assets/tiles/Level-02.tmx": {
+            "expandedObjectLayers": [
+                2
+            ],
             "scale": 1.5229687499999998,
             "selectedLayer": 0,
             "viewCenter": {
@@ -28,10 +31,10 @@
                 4
             ],
             "scale": 1.0880468749999999,
-            "selectedLayer": 1,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 380.0387736052273,
-                "y": 271.5875637251383
+                "x": 95.12457815753572,
+                "y": 272.5066417749696
             }
         },
         "pixel adventure.tsx": {

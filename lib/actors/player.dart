@@ -34,24 +34,27 @@ bool isfacingright = true;
     _updatePosition(dt);
     super.update(dt);
   }
-  //for keyboard inputs
-  @override
+
+ @override
   bool onKeyEvent(KeyEvent event, Set<LogicalKeyboardKey> keysPressed) {
-    final isLeftKeyPressed = keysPressed.contains(LogicalKeyboardKey.keyA) || 
-    keysPressed.contains(LogicalKeyboardKey.arrowLeft);
-    final isRightKeyPressed = keysPressed.contains(LogicalKeyboardKey.keyD) || 
-    keysPressed.contains(LogicalKeyboardKey.arrowRight);
+    final isLeftKeyPressed = keysPressed.contains(LogicalKeyboardKey.keyA) ||
+          keysPressed.contains(LogicalKeyboardKey.arrowLeft);
+    final isRightKeyPressed = keysPressed.contains(LogicalKeyboardKey.keyD) ||
+          keysPressed.contains(LogicalKeyboardKey.arrowRight);
+    
     if(isRightKeyPressed && isLeftKeyPressed){
       playerDirection = PlayerDirection.none;
-    }else if (isLeftKeyPressed){
-      playerDirection = PlayerDirection.left; 
     }else if (isRightKeyPressed){
-      playerDirection = PlayerDirection.right; 
-    }else{
-     playerDirection = PlayerDirection.none;
+      playerDirection = PlayerDirection.right;
+    }else if (isLeftKeyPressed){
+      playerDirection = PlayerDirection.left;
     }
-    return true;
+    else{
+      playerDirection = PlayerDirection.none;
+    }
+    return super.onKeyEvent(event, keysPressed);
   }
+
   void _loadAllAnimations() {
     idleAnimation=_CreateaAnimation('Idle', 11);
     runningAnimation= _CreateaAnimation('Run', 12);
@@ -98,7 +101,7 @@ bool isfacingright = true;
       case PlayerDirection.none:
         current= PlayerState.idle; 
         break;
-      //default: 
+      default: 
     }
     velocity= Vector2(dirX, 0.0);
     position += velocity * dt;
