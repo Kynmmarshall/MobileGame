@@ -5,6 +5,7 @@ import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/input.dart';
 import 'package:flame/game.dart';
+import 'package:flutter/painting.dart';
 import 'package:game/actors/player.dart';
 import 'package:game/levels/level.dart';
 
@@ -37,7 +38,17 @@ class PixelAdventure extends FlameGame with HasKeyboardHandlerComponents, DragCa
   
   void addjoystick() {
     joystick = JoystickComponent(
-      knob: SpriteComponent(images.fromCache('Joystick components/ knob.png'))
+      knob: SpriteComponent(
+        sprite: Sprite(
+        images.fromCache('Joystick components/knob.png'),
+        ),
+        ),
+      background: SpriteComponent(
+        sprite: Sprite(
+          images.fromCache('Joystick components/joystick.png')
+        ),
+      ),
+      margin: const EdgeInsets.only(left: 32, bottom: 32),
     );
   } 
 }     
