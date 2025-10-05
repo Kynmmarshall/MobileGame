@@ -10,8 +10,8 @@ enum PlayerDirection {left, right, none}
 
 class Player extends SpriteAnimationGroupComponent with HasGameReference<PixelAdventure>, KeyboardHandler{
 
-String Character;
-Player({ position, required this.Character}): super(position: position);
+String character;
+Player({ position, this.character = 'Ninja Frog'}): super(position: position);
 
 late final SpriteAnimation idleAnimation,runningAnimation;
 final double stepTime=0.05;
@@ -37,10 +37,10 @@ bool isfacingright = true;
 
  @override
   bool onKeyEvent(KeyEvent event, Set<LogicalKeyboardKey> keysPressed) {
-    final isLeftKeyPressed = keysPressed.contains(LogicalKeyboardKey.keyA) ||
-          keysPressed.contains(LogicalKeyboardKey.arrowLeft);
-    final isRightKeyPressed = keysPressed.contains(LogicalKeyboardKey.keyD) ||
-          keysPressed.contains(LogicalKeyboardKey.arrowRight);
+    final isLeftKeyPressed = keysPressed.contains(LogicalKeyboardKey.arrowLeft) ||
+          keysPressed.contains(LogicalKeyboardKey.keyA);
+    final isRightKeyPressed = keysPressed.contains(LogicalKeyboardKey.arrowRight) ||
+          keysPressed.contains(LogicalKeyboardKey.keyD);
     
     if(isRightKeyPressed && isLeftKeyPressed){
       playerDirection = PlayerDirection.none;
@@ -65,12 +65,12 @@ bool isfacingright = true;
   PlayerState.running: runningAnimation,};
   
   //set current animation
-  current = PlayerState.idle;
+ // current = PlayerState.idle;
   
  }
 
  SpriteAnimation _CreateaAnimation(String animation, int amount){
-    return SpriteAnimation.fromFrameData( game.images.fromCache('Main Characters/$Character/$animation (32x32).png'), SpriteAnimationData.sequenced(
+    return SpriteAnimation.fromFrameData( game.images.fromCache('Main Characters/$character/$animation (32x32).png'), SpriteAnimationData.sequenced(
       amount: amount, 
       stepTime: stepTime, 
       textureSize: Vector2(32, 32),

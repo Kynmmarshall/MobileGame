@@ -2,17 +2,24 @@ import 'dart:async';
 import 'dart:ui';
 
 import 'package:flame/components.dart';
+import 'package:flame/events.dart';
 import 'package:flame/input.dart';
 import 'package:flame/game.dart';
+import 'package:game/actors/player.dart';
 import 'package:game/levels/level.dart';
 
-class PixelAdventure extends FlameGame with HasKeyboardHandlerComponents{
+class PixelAdventure extends FlameGame with HasKeyboardHandlerComponents, DragCallbacks {
   @override
   Color backgroundColor() => const Color(0xFF211F30);
   late final CameraComponent cam;
+  late JoystickComponent joystick;
+
 
   @override
-  final world = Level(levelName: 'Level-02');
+  final world = Level(
+    levelName: 'Level-02', 
+  player: Player(character: 'Ninja Frog')
+  );
 
   @override
   FutureOr<void> onLoad() async{
@@ -23,6 +30,14 @@ class PixelAdventure extends FlameGame with HasKeyboardHandlerComponents{
     cam.viewfinder.anchor= Anchor.topLeft;
     addAll([cam,world]);  
 
+    addjoystick();
+
     return super.onLoad();
+  }
+  
+  void addjoystick() {
+    joystick = JoystickComponent(
+      knob: SpriteComponent(images.fromCache('Joystick components/ knob.png'))
+    );
   } 
 }     
