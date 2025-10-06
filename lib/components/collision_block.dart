@@ -9,5 +9,5 @@ class CollisionBlock extends PositionComponent {
     }) : 
     super(
       position: position, 
-      size: size);
+      size: size){debugMode = true;}
 }

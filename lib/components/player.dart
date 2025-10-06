@@ -39,6 +39,7 @@ bool isfacingright = true;
   void update(double dt) {
     _updatePlayerState();
     _updatePosition(dt);
+    _checkHorizontalCollision();
     super.update(dt);
   }
 
@@ -97,6 +98,13 @@ bool isfacingright = true;
   void _updatePosition(double dt) {
     velocity.x = horisontalMovement * moveSpeed;
     position.x += velocity.x * dt;
+  }
+  
+  void _checkHorizontalCollision() 
+  {
+    for (final blocks in collisionBlocks){
+      // handle collision
+    }
   }
   
 }
