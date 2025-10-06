@@ -18,7 +18,6 @@ class Level extends World{
   @override
   FutureOr<void> onLoad() async{
     level= await TiledComponent.load("$levelName.tmx", Vector2.all(16));
-    
     add(level);
     
     final SpawnPointLayer=level.tileMap.getLayer<ObjectGroup>("SpawnPoints");
@@ -45,7 +44,7 @@ class Level extends World{
           final platform = CollisionBlock(
             position: Vector2(collision.x, collision.y),
             size: Vector2(collision.width, collision.height),
-            isplatform: true,
+            isPlatform: true,
           );
           collisionBlocks.add(platform);
           add(platform);

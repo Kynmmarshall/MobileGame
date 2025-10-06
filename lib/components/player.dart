@@ -104,7 +104,7 @@ bool isfacingright = true;
   void _checkHorizontalCollision() 
   {
     for (final blocks in collisionBlocks){
-      if (!blocks.isplatform) {
+      if (!blocks.isPlatform) {
         if(checkCollision(this , blocks)){
           if (velocity.x > 0){
             velocity.x = 0;

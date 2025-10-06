@@ -16,13 +16,12 @@ class PixelAdventure extends FlameGame with HasKeyboardHandlerComponents, DragCa
   Player player = Player(character: 'Ninja Frog');
   late JoystickComponent joystick;
   bool showjoystick = true;
-
+  
   @override
   FutureOr<void> onLoad() async{
     
-    //loac all images into the cache
+    //locate all images into the cache
     await images.loadAllImages();
-
     @override
   final world = Level(
     player: player,
@@ -34,7 +33,6 @@ class PixelAdventure extends FlameGame with HasKeyboardHandlerComponents, DragCa
     addAll([cam,world]);  
     if (showjoystick){
     addjoystick();}
-
     return super.onLoad();
   }
   @override
