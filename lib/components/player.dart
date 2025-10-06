@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flame/components.dart';
 import 'package:flutter/services.dart';
 import 'package:game/components/collision_block.dart';
+import 'package:game/components/utils.dart';
 import 'package:game/pixel_adventure.dart';
 
 enum PlayerState {idle, running}
@@ -103,7 +104,14 @@ bool isfacingright = true;
   void _checkHorizontalCollision() 
   {
     for (final blocks in collisionBlocks){
-      // handle collision
+      if (!blocks.isplatform) {
+        if(checkCollision(this , blocks)){
+          if (velocity.x > 0){
+            velocity.x = 0;
+            position.x = blocks.x;
+          }
+        }
+      }
     }
   }
   
