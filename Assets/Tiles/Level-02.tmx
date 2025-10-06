@@ -3,7 +3,7 @@
  <tileset firstgid="1" source="pixel adventure.tsx"/>
  <tileset firstgid="243" source="pixel adventure.tsx"/>
  <objectgroup id="2" name="SpawnPoints">
-  <object id="2" name="Player" type="Player" x="303.355" y="254.766" width="32.174" height="36.1137"/>
+  <object id="2" name="Player" type="Player" x="185.821" y="283.657" width="32.174" height="36.1137"/>
  </objectgroup>
  <layer id="1" name="Background" width="40" height="23">
   <data encoding="csv">

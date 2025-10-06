@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flame/components.dart';
 import 'package:flutter/services.dart';
+import 'package:game/components/collision_block.dart';
 import 'package:game/pixel_adventure.dart';
 
 enum PlayerState {idle, running}
@@ -22,12 +23,14 @@ final double stepTime=0.05;
 double horisontalMovement = 0;
 double moveSpeed = 100;
 Vector2 velocity = Vector2(0, 0);
+List<CollisionBlock> collisionBlocks = [];
 bool isfacingright = true;
 
 // Loads Assets to the game (inbuilt function that can be modified)
   @override
   FutureOr<void> onLoad() {
     _loadAllAnimations();
+    debugMode = true;
     return super.onLoad();
   }
 

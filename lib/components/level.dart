@@ -3,7 +3,7 @@ import 'dart:io';
 
 import 'package:flame/components.dart';
 import 'package:flame_tiled/flame_tiled.dart';
-import 'package:game/components/collision.dart';
+import 'package:game/components/collision_block.dart';
 import 'package:game/components/player.dart';
 
 class Level extends World{
@@ -51,9 +51,16 @@ class Level extends World{
           add(platform);
           break;
           default: 
+          final block = CollisionBlock(
+            position: Vector2(collision.x, collision.y),
+            size: Vector2(collision.width, collision.height),
+          );
+          collisionBlocks.add(block);
+          add(block);
       }
     }
     }
+    player.collisionBlocks = collisionBlocks;
     return super.onLoad();
   }
 }
