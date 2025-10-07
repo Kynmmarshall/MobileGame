@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:flame/components.dart';
 import 'package:flame_tiled/flame_tiled.dart';
@@ -19,7 +18,22 @@ class Level extends World{
   FutureOr<void> onLoad() async{
     level= await TiledComponent.load("$levelName.tmx", Vector2.all(16));
     add(level);
+
+   _scrollingBackground();
+   _spawningObject();
+   _addCollisions();
     
+    
+    return super.onLoad();
+  }
+  
+  void _scrollingBackground() {
+
+
+
+  }
+  
+  void _spawningObject() {
     final SpawnPointLayer=level.tileMap.getLayer<ObjectGroup>("SpawnPoints");
     
     if (SpawnPointLayer != null)
@@ -34,7 +48,11 @@ class Level extends World{
       }
     }
     }
-    
+
+  }
+  
+  
+  void _addCollisions() {
     final collisionsLayers = level.tileMap.getLayer<ObjectGroup>('Collisions');
     if (collisionsLayers != null)
     {
@@ -60,6 +78,5 @@ class Level extends World{
     }
     }
     player.collisionBlocks = collisionBlocks;
-    return super.onLoad();
   }
 }

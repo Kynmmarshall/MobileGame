@@ -28,7 +28,7 @@ final double _terminalVelocity = 300;
 
 
 //PlayerDirection playerDirection = PlayerDirection.none;
-double horisontalMovement = 0;
+double horizontalMovement = 0;
 double moveSpeed = 100;
 Vector2 velocity = Vector2(0, 0);
 List<CollisionBlock> collisionBlocks = [];
@@ -68,14 +68,21 @@ bool isfacingright = true;
 
  @override
   bool onKeyEvent(KeyEvent event, Set<LogicalKeyboardKey> keysPressed) {
-    horisontalMovement = 0;
+    horizontalMovement = 0;
     final isLeftKeyPressed = keysPressed.contains(LogicalKeyboardKey.arrowLeft) ||
           keysPressed.contains(LogicalKeyboardKey.keyA);
     final isRightKeyPressed = keysPressed.contains(LogicalKeyboardKey.arrowRight) ||
           keysPressed.contains(LogicalKeyboardKey.keyD);
     
-    horisontalMovement += isLeftKeyPressed ? -1:0;
-    horisontalMovement += isRightKeyPressed ? 1:0;
+     if (isLeftKeyPressed && isRightKeyPressed) {
+    horizontalMovement = 0; // Cancel if both pressed
+  } else if (isLeftKeyPressed) {
+    horizontalMovement = -1;
+  } else if (isRightKeyPressed) {
+    horizontalMovement = 1;
+  } else {
+    horizontalMovement = 0;
+  }
 
     hasjumped = keysPressed.contains(LogicalKeyboardKey.space); 
 
@@ -120,7 +127,7 @@ bool isfacingright = true;
     }
 
     //check if moving then create animation
-    if (velocity.x > 0 || velocity.x < 0) playerState =PlayerState.running;
+    if (velocity.x > 0 || velocity.x < 0) playerState = PlayerState.running;
 
     //Check if falling set to falling
     if (velocity.y > 0) playerState = PlayerState.falling;
@@ -136,7 +143,7 @@ bool isfacingright = true;
          _playerjump(dt);
     }
 
-    velocity.x = horisontalMovement * moveSpeed;
+    velocity.x = horizontalMovement * moveSpeed;
     position.x += velocity.x * dt;
   }
   
