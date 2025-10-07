@@ -22,8 +22,8 @@ Player({
 late final SpriteAnimation idleAnimation, runningAnimation, jumpingAnimation, fallingAnimation;
 
 final double stepTime=0.05;
-final double _gravity = 14;
-final double _jumpForce = 260;
+final double _gravity = 15;
+final double _jumpForce = 300;
 final double _terminalVelocity = 300;
 
 
