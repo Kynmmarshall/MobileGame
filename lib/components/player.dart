@@ -47,7 +47,7 @@ bool isfacingright = true;
   @override
   FutureOr<void> onLoad() {
     _loadAllAnimations();
-    debugMode = true;
+    //debugMode = true;
     add(RectangleHitbox(
       position: Vector2(hitbox.offsetX, hitbox.offsetY),
       size: Vector2(hitbox.width, hitbox.height)
@@ -147,11 +147,11 @@ bool isfacingright = true;
         if(checkCollision(this , blocks)){
           if (velocity.x > 0){
             velocity.x = 0;
-            position.x = blocks.x - width;
+            position.x = blocks.x - hitbox.offsetX - hitbox.width;
             break;
           }else if (velocity.x < 0){
             velocity.x = 0;
-            position.x = blocks.x + blocks.width + width;
+            position.x = blocks.x + blocks.width + hitbox.width+ hitbox.offsetX;
             break;
           }
         }
@@ -180,7 +180,7 @@ bool isfacingright = true;
           if(checkCollision(this , blocks)){
             if (velocity.y > 0){
             velocity.y = 0;
-            position.y = blocks.y - height;
+            position.y = blocks.y - hitbox.height - hitbox.offsetY;
             isonground = true;  
             break;
           }
@@ -190,7 +190,7 @@ bool isfacingright = true;
         if(checkCollision(this , blocks)){
           if (velocity.y > 0){
             velocity.y = 0;
-            position.y = blocks.y - height;
+            position.y = blocks.y - hitbox.height - hitbox.offsetY;
             isonground = true;
             break;
           }
