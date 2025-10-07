@@ -1,8 +1,10 @@
 import 'dart:async';
 
+import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flutter/services.dart';
 import 'package:game/components/collision_block.dart';
+import 'package:game/components/player_hitbox.dart';
 import 'package:game/components/utils.dart';
 import 'package:game/pixel_adventure.dart';
 
@@ -30,6 +32,13 @@ double horisontalMovement = 0;
 double moveSpeed = 100;
 Vector2 velocity = Vector2(0, 0);
 List<CollisionBlock> collisionBlocks = [];
+
+PlayerHitbox hitbox =PlayerHitbox(
+  offsetX: 10, 
+  offsetY: 4,
+   width: 14, 
+   height: 28);
+
 bool isonground = false;
 bool hasjumped = false;
 bool isfacingright = true;
@@ -39,6 +48,10 @@ bool isfacingright = true;
   FutureOr<void> onLoad() {
     _loadAllAnimations();
     debugMode = true;
+    add(RectangleHitbox(
+      position: Vector2(hitbox.offsetX, hitbox.offsetY),
+      size: Vector2(hitbox.width, hitbox.height)
+    ));
     return super.onLoad();
   }
 
@@ -72,13 +85,16 @@ bool isfacingright = true;
   void _loadAllAnimations() {
     idleAnimation=_CreateaAnimation('Idle', 11);
     runningAnimation= _CreateaAnimation('Run', 12);
-    jumpingAnimation= _CreateaAnimation('Run', 12);
-    fallingAnimation= _CreateaAnimation('Run', 12);
+    jumpingAnimation= _CreateaAnimation('Jump', 1);
+    fallingAnimation= _CreateaAnimation('Fall', 1);
 
  // list of all animations 
  animations = {
   PlayerState.idle: idleAnimation,
-  PlayerState.running: runningAnimation,};
+  PlayerState.running: runningAnimation,
+  PlayerState.jumping: jumpingAnimation,
+  PlayerState.falling: fallingAnimation,
+  };
   
   //set current animation
  current = PlayerState.idle;
@@ -105,6 +121,12 @@ bool isfacingright = true;
 
     //check if moving then create animation
     if (velocity.x > 0 || velocity.x < 0) playerState =PlayerState.running;
+
+    //Check if falling set to falling
+    if (velocity.y > 0) playerState = PlayerState.falling;
+
+    //Check if jumping set to jumping
+    if (velocity.y < 0) playerState = PlayerState.jumping;
 
     current = playerState;
   }
