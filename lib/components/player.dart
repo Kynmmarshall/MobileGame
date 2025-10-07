@@ -20,11 +20,18 @@ Player({
 late final SpriteAnimation idleAnimation,runningAnimation;
 final double stepTime=0.05;
 
+final double _gravity = 13;
+final double _jumpForce = 260;
+final double _terminalVelocity = 300;
+
+
 //PlayerDirection playerDirection = PlayerDirection.none;
 double horisontalMovement = 0;
 double moveSpeed = 100;
 Vector2 velocity = Vector2(0, 0);
 List<CollisionBlock> collisionBlocks = [];
+bool isonground = false;
+bool hasjumped = false;
 bool isfacingright = true;
 
 // Loads Assets to the game (inbuilt function that can be modified)
@@ -41,6 +48,8 @@ bool isfacingright = true;
     _updatePlayerState();
     _updatePosition(dt);
     _checkHorizontalCollision();
+    _applyGravity(dt);
+    _checkVerticalCollision();
     super.update(dt);
   }
 
@@ -54,6 +63,8 @@ bool isfacingright = true;
     
     horisontalMovement += isLeftKeyPressed ? -1:0;
     horisontalMovement += isRightKeyPressed ? 1:0;
+
+    hasjumped = keysPressed.contains(LogicalKeyboardKey.space); 
 
     return super.onKeyEvent(event, keysPressed);
   }
@@ -97,6 +108,10 @@ bool isfacingright = true;
   }
 
   void _updatePosition(double dt) {
+    if (hasjumped && isonground){
+         _playerjump(dt);
+    }
+
     velocity.x = horisontalMovement * moveSpeed;
     position.x += velocity.x * dt;
   }
@@ -108,11 +123,57 @@ bool isfacingright = true;
         if(checkCollision(this , blocks)){
           if (velocity.x > 0){
             velocity.x = 0;
-            position.x = blocks.x;
+            position.x = blocks.x - width;
+            break;
+          }else if (velocity.x < 0){
+            velocity.x = 0;
+            position.x = blocks.x + blocks.width + width;
+            break;
           }
         }
       }
     }
   }
+  
+  void _applyGravity(double dt) {
+    
+    velocity.y += _gravity;
+    velocity.y = velocity.y.clamp(-_jumpForce, _terminalVelocity);
+    position.y += velocity.y * dt;
+
+  }
+  
+  void _playerjump(double dt) {
+    velocity.y = -_jumpForce;
+    position.y += velocity.y * dt;
+    hasjumped = false;
+    isonground = false;
+  }
+
+  void _checkVerticalCollision() {
+    for (final blocks in collisionBlocks){
+      if (blocks.isPlatform) {
+
+      }
+      else{
+        if(checkCollision(this , blocks)){
+          if (velocity.y > 0){
+            velocity.y = 0;
+            position.y = blocks.y - height;
+            isonground = true;
+            break;
+          }
+          else if(velocity.y < 0){
+            velocity.y = 0;
+            position.y = blocks.y + blocks.height;
+            break;
+          }
+        }
+      }
+    }
+  
+
+  }
+  
   
 }

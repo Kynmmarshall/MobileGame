@@ -1,3 +1,5 @@
+import 'package:flame/game.dart';
+
 bool checkCollision(player, block){
     final playerX = player.position.x;
     final playerY = player.position.y;
@@ -9,12 +11,13 @@ bool checkCollision(player, block){
     final blockWidth = block.width;
     final blockHeight = block.height;
 
+    final fixX = player.scale.x < 0 ? playerX - playerWidth : playerX;
 
     return (
         playerY < blockY + blockHeight &&
         playerY + playerHeight > blockY &&
-        playerX < blockX + blockWidth &&
-        playerX + playerWidth > blockX   
+        fixX < blockX + blockWidth &&
+        fixX + playerWidth > blockX   
     );
 
 }
