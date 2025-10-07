@@ -6,7 +6,7 @@ import 'package:game/components/collision_block.dart';
 import 'package:game/components/utils.dart';
 import 'package:game/pixel_adventure.dart';
 
-enum PlayerState {idle, running}
+enum PlayerState {idle, running, jumping, falling}
 
 class Player extends SpriteAnimationGroupComponent with 
 HasGameReference<PixelAdventure>, KeyboardHandler{
@@ -17,10 +17,10 @@ Player({
   this.character = "Ninja Frog",
   }): super(position: position);
 
-late final SpriteAnimation idleAnimation,runningAnimation;
-final double stepTime=0.05;
+late final SpriteAnimation idleAnimation, runningAnimation, jumpingAnimation, fallingAnimation;
 
-final double _gravity = 13;
+final double stepTime=0.05;
+final double _gravity = 14;
 final double _jumpForce = 260;
 final double _terminalVelocity = 300;
 
@@ -72,6 +72,8 @@ bool isfacingright = true;
   void _loadAllAnimations() {
     idleAnimation=_CreateaAnimation('Idle', 11);
     runningAnimation= _CreateaAnimation('Run', 12);
+    jumpingAnimation= _CreateaAnimation('Run', 12);
+    fallingAnimation= _CreateaAnimation('Run', 12);
 
  // list of all animations 
  animations = {
@@ -153,9 +155,16 @@ bool isfacingright = true;
   void _checkVerticalCollision() {
     for (final blocks in collisionBlocks){
       if (blocks.isPlatform) {
-
+          if(checkCollision(this , blocks)){
+            if (velocity.y > 0){
+            velocity.y = 0;
+            position.y = blocks.y - height;
+            isonground = true;  
+            break;
+          }
+          }
       }
-      else{
+      else{  
         if(checkCollision(this , blocks)){
           if (velocity.y > 0){
             velocity.y = 0;
