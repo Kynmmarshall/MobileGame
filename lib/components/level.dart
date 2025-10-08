@@ -17,7 +17,7 @@ class Level extends World{
   @override
   FutureOr<void> onLoad() async{
     level= await TiledComponent.load("$levelName.tmx", Vector2.all(16));
-    add(level);
+   // add(level);
 
    _scrollingBackground();
    _spawningObject();
@@ -28,8 +28,11 @@ class Level extends World{
   }
   
   void _scrollingBackground() {
-
-
+    final backgroundLayer = level.tileMap.getLayer("Background");
+    if (backgroundLayer != null){
+        final backgroundColor = backgroundLayer.properties.getValue('BackgroundColor');
+        
+    }
 
   }
   
