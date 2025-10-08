@@ -71,7 +71,6 @@ class Level extends World with HasGameReference<PixelAdventure>{
 
   }
   
-  
   void _addCollisions() {
     final collisionsLayers = level.tileMap.getLayer<ObjectGroup>('Collisions');
     if (collisionsLayers != null)

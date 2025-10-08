@@ -23,6 +23,7 @@ flutter:
     - assets/tiles/
     - assets/images/Terrain/
     - assets/images/Background/
+    - assets/images/Items/Fruits/
     - assets/images/Joystick components/
     - assets/images/Main Characters/Ninja Frog/
     - assets/images/Main Characters/Virtual Guy/
