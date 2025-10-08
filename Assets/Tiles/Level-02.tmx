@@ -7,16 +7,16 @@
   <object id="3" x="32" y="32" width="560" height="16"/>
   <object id="4" x="32" y="48" width="16" height="304"/>
   <object id="5" x="32" y="336" width="560" height="16"/>
-  <object id="34" name="melon" type="Fruits" x="160" y="144" width="32" height="32"/>
-  <object id="35" name="pineapple" type="Fruits" x="272" y="96" width="32" height="32"/>
-  <object id="36" name="pineapple" type="Fruits" x="304" y="96" width="32" height="32"/>
-  <object id="37" name="pineapple" type="Fruits" x="288" y="64" width="32" height="32"/>
-  <object id="38" name="orange" type="Fruits" x="272" y="192" width="32" height="32"/>
-  <object id="40" name="melon" type="Fruits" x="304" y="256" width="32" height="32"/>
-  <object id="41" name="kiwi" type="Fruits" x="416" y="144" width="32" height="32"/>
-  <object id="42" name="kiwi" type="Fruits" x="448" y="144" width="32" height="32"/>
-  <object id="43" name="kiwi" type="Fruits" x="432" y="112" width="32" height="32"/>
-  <object id="39" name="apple" type="Fruits" x="352" y="176" width="32" height="32"/>
+  <object id="34" name="Melon" type="Fruits" x="160" y="144" width="32" height="32"/>
+  <object id="35" name="Pineapple" type="Fruits" x="272" y="96" width="32" height="32"/>
+  <object id="36" name="Pineapple" type="Fruits" x="304" y="96" width="32" height="32"/>
+  <object id="37" name="Pineapple" type="Fruits" x="288" y="64" width="32" height="32"/>
+  <object id="38" name="Orange" type="Fruits" x="272" y="192" width="32" height="32"/>
+  <object id="40" name="Melon" type="Fruits" x="304" y="256" width="32" height="32"/>
+  <object id="41" name="Kiwi" type="Fruits" x="416" y="144" width="32" height="32"/>
+  <object id="42" name="Kiwi" type="Fruits" x="448" y="144" width="32" height="32"/>
+  <object id="43" name="Kiwi" type="Fruits" x="432" y="112" width="32" height="32"/>
+  <object id="39" name="Apple" type="Fruits" x="352" y="176" width="32" height="32"/>
  </objectgroup>
  <objectgroup id="3" name="Collisions">
   <object id="9" x="32" y="32" width="560" height="16"/>

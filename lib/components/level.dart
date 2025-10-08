@@ -4,6 +4,7 @@ import 'package:flame/components.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 import 'package:game/components/Background_tile.dart';
 import 'package:game/components/collision_block.dart';
+import 'package:game/components/fruit.dart';
 import 'package:game/components/player.dart';
 import 'package:game/pixel_adventure.dart';
 
@@ -64,7 +65,16 @@ class Level extends World with HasGameReference<PixelAdventure>{
           add(player);
           player.position = Vector2(SpawnPoint.x,SpawnPoint.y);
           break;
-          default: 
+        case 'Fruits':
+          final fruits = Fruit(
+          fruit: SpawnPoint.name,
+          position: Vector2(SpawnPoint.x,SpawnPoint.y),
+          size: Vector2(SpawnPoint.width,SpawnPoint.height)
+          );
+          add(fruits);
+          break;
+        default: 
+      
       }
     }
     }
