@@ -41,7 +41,7 @@ class Level extends World with HasGameReference<PixelAdventure>{
         for (double y = 0; y < game.size.y / numTilesY ; y++){
           for (double x = 0; x < numTilesX  ; x++){
             final backgroundTile = BackgroundTile(
-          color: backgroundColor != null ? backgroundColor : 'Gray',
+          color: backgroundColor ?? 'Gray',
           position: Vector2(x * tileSize, y * tileSize - tileSize),
         );
         add(backgroundTile);
