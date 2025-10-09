@@ -48,7 +48,7 @@ bool isfacingright = true;
   @override
   FutureOr<void> onLoad() {
     _loadAllAnimations();
-    //debugMode = true;
+    debugMode = true;
     add(RectangleHitbox(
       position: Vector2(hitbox.offsetX, hitbox.offsetY),
       size: Vector2(hitbox.width, hitbox.height)
@@ -70,25 +70,18 @@ bool isfacingright = true;
  @override
   bool onKeyEvent(KeyEvent event, Set<LogicalKeyboardKey> keysPressed) {
     horizontalMovement = 0;
-    final isLeftKeyPressed = keysPressed.contains(LogicalKeyboardKey.arrowLeft) ||
-          keysPressed.contains(LogicalKeyboardKey.keyA);
-    final isRightKeyPressed = keysPressed.contains(LogicalKeyboardKey.arrowRight) ||
-          keysPressed.contains(LogicalKeyboardKey.keyD);
+    final isLeftKeyPressed = keysPressed.contains(LogicalKeyboardKey.keyA) ||
+          keysPressed.contains(LogicalKeyboardKey.arrowLeft);
+    final isRightKeyPressed = keysPressed.contains(LogicalKeyboardKey.keyD) ||
+          keysPressed.contains(LogicalKeyboardKey.arrowRight);
     
-     if (isLeftKeyPressed && isRightKeyPressed) {
-    horizontalMovement = 0; // Cancel if both pressed
-  } else if (isLeftKeyPressed) {
-    horizontalMovement = -1;
-  } else if (isRightKeyPressed) {
-    horizontalMovement = 1;
-  } else {
-    horizontalMovement = 0;
-  }
+    horizontalMovement = isLeftKeyPressed ? -1 : -1;
+    horizontalMovement = isRightKeyPressed ? -1 : -1;
 
     hasjumped = keysPressed.contains(LogicalKeyboardKey.space); 
 
     return super.onKeyEvent(event, keysPressed);
-  }
+  } 
 
   void _loadAllAnimations() {
     idleAnimation=_CreateaAnimation('Idle', 11);
