@@ -5,13 +5,14 @@ import 'package:flame/components.dart';
 import 'package:flutter/services.dart';
 import 'package:game/components/collision_block.dart';
 import 'package:game/components/customHitBox.dart';
+import 'package:game/components/fruit.dart';
 import 'package:game/components/utils.dart';
 import 'package:game/pixel_adventure.dart';
 
 enum PlayerState {idle, running, jumping, falling}
 
 class Player extends SpriteAnimationGroupComponent with 
-HasGameReference<PixelAdventure>, KeyboardHandler{
+HasGameReference<PixelAdventure>, KeyboardHandler , CollisionCallbacks{
 
 String character;
 Player({ 
@@ -47,7 +48,7 @@ bool isfacingright = true;
   @override
   FutureOr<void> onLoad() {
     _loadAllAnimations();
-    //debugMode = true;
+    debugMode = true;
     add(RectangleHitbox(
       position: Vector2(hitbox.offsetX, hitbox.offsetY),
       size: Vector2(hitbox.width, hitbox.height)
@@ -107,6 +108,14 @@ bool isfacingright = true;
  current = PlayerState.idle;
   
  }
+
+ @override
+  void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
+    if(other is Fruit) {
+      print("COLL");
+    }
+    super.onCollision(intersectionPoints, other);
+  }
 
  SpriteAnimation _CreateaAnimation(String animation, int amount){
     return SpriteAnimation.fromFrameData( game.images.fromCache('Main Characters/$character/$animation (32x32).png'), SpriteAnimationData.sequenced(

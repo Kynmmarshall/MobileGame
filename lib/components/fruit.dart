@@ -6,7 +6,8 @@ import 'package:game/components/customHitBox.dart';
 import 'package:game/pixel_adventure.dart';
 
 
-class Fruit extends SpriteAnimationComponent with HasGameReference<PixelAdventure>{
+class Fruit extends SpriteAnimationComponent with HasGameReference<PixelAdventure>,
+CollisionCallbacks{
     final String fruit;
     Fruit({
       this.fruit = 'Apple' ,
@@ -27,8 +28,9 @@ class Fruit extends SpriteAnimationComponent with HasGameReference<PixelAdventur
   @override
   FutureOr<void> onLoad() {
     add(RectangleHitbox(
-      position:Vector2(fruitHitBox.offsetX,fruitHitBox.offsetY),
-      size: Vector2(fruitHitBox.width,fruitHitBox.width ),
+      position:Vector2(fruitHitBox.offsetX, fruitHitBox.offsetY),
+      size: Vector2(fruitHitBox.width, fruitHitBox.width ),
+      collisionType: CollisionType.passive,
     ));
     priority = -1;
     debugMode = true;
@@ -43,4 +45,5 @@ class Fruit extends SpriteAnimationComponent with HasGameReference<PixelAdventur
     return super.onLoad();
   }
 
+  
 }
