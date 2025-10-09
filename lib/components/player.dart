@@ -48,7 +48,7 @@ bool isfacingright = true;
   @override
   FutureOr<void> onLoad() {
     _loadAllAnimations();
-    debugMode = true;
+    //debugMode = true;
     add(RectangleHitbox(
       position: Vector2(hitbox.offsetX, hitbox.offsetY),
       size: Vector2(hitbox.width, hitbox.height)
@@ -111,9 +111,8 @@ bool isfacingright = true;
 
  @override
   void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
-    if(other is Fruit) {
-      print("COLL");
-    }
+    if(other is Fruit) other.collidedWithPlayer();
+   
     super.onCollision(intersectionPoints, other);
   }
 

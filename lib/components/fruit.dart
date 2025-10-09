@@ -27,6 +27,7 @@ CollisionCallbacks{
 
   @override
   FutureOr<void> onLoad() {
+
     add(RectangleHitbox(
       position:Vector2(fruitHitBox.offsetX, fruitHitBox.offsetY),
       size: Vector2(fruitHitBox.width, fruitHitBox.width ),
@@ -44,6 +45,11 @@ CollisionCallbacks{
       );
     return super.onLoad();
   }
-
   
+  void collidedWithPlayer() {
+    
+  }
+
+   
+
 }
