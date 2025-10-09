@@ -47,7 +47,7 @@ CollisionCallbacks{
   }
   
   void collidedWithPlayer() {
-    
+    removeFromParent();
   }
 
    
