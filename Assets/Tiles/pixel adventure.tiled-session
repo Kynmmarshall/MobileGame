@@ -13,14 +13,14 @@
         },
         "C:/Users/kynm/Desktop/MobileGame/assets/tiles/Level-02.tmx": {
             "expandedObjectLayers": [
-                3,
-                2
+                2,
+                3
             ],
             "scale": 1.5229687499999998,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 31.189083820662773,
-                "y": 117.53360008207656
+                "x": 347.67620806401976,
+                "y": 121.80157997332512
             }
         },
         "C:/Users/kynm/Desktop/MobileGame/assets/tiles/pixel adventure.tsx": {
@@ -29,14 +29,14 @@
         },
         "Level-01.tmx": {
             "expandedObjectLayers": [
-                4,
-                5
+                5,
+                4
             ],
             "scale": 1.5,
             "selectedLayer": 0,
             "viewCenter": {
                 "x": 303.66666666666663,
-                "y": 195.66666666666663
+                "y": 91.66666666666663
             }
         },
         "pixel adventure.tsx": {

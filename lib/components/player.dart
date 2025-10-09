@@ -4,7 +4,7 @@ import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flutter/services.dart';
 import 'package:game/components/collision_block.dart';
-import 'package:game/components/player_hitbox.dart';
+import 'package:game/components/customHitBox.dart';
 import 'package:game/components/utils.dart';
 import 'package:game/pixel_adventure.dart';
 
@@ -33,7 +33,7 @@ double moveSpeed = 100;
 Vector2 velocity = Vector2(0, 0);
 List<CollisionBlock> collisionBlocks = [];
 
-PlayerHitbox hitbox =PlayerHitbox(
+customHitBox hitbox =customHitBox(
   offsetX: 10, 
   offsetY: 4,
    width: 14, 

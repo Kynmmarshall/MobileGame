@@ -1,7 +1,10 @@
 import 'dart:async';
 
+import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
+import 'package:game/components/customHitBox.dart';
 import 'package:game/pixel_adventure.dart';
+
 
 class Fruit extends SpriteAnimationComponent with HasGameReference<PixelAdventure>{
     final String fruit;
@@ -14,9 +17,21 @@ class Fruit extends SpriteAnimationComponent with HasGameReference<PixelAdventur
         size: size);
 
   final double stepTime = 0.05;
+  
+  customHitBox fruitHitBox = customHitBox(
+    offsetX: 10,
+    offsetY: 10, 
+    width: 12, 
+    height: 12); 
 
   @override
   FutureOr<void> onLoad() {
+    add(RectangleHitbox(
+      position:Vector2(fruitHitBox.offsetX,fruitHitBox.offsetY),
+      size: Vector2(fruitHitBox.width,fruitHitBox.width ),
+    ));
+    priority = -1;
+    debugMode = true;
     animation = SpriteAnimation.fromFrameData(
       game.images.fromCache('Items/Fruits/$fruit.png'), 
       SpriteAnimationData.sequenced(
