@@ -111,9 +111,7 @@ bool isfacingright = true;
 
  @override
   void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
-    if(other is Fruit) {
-      print("coll");
-      }
+    if(other is Fruit) other.collidedWithPlayer();
     super.onCollision(intersectionPoints, other);
   }
 
