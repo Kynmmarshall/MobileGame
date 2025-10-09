@@ -69,7 +69,7 @@ class Level extends World with HasGameReference<PixelAdventure>{
           final fruits = Fruit(
           fruit: SpawnPoint.name,
           position: Vector2(SpawnPoint.x,SpawnPoint.y),
-          size: Vector2(SpawnPoint.width,SpawnPoint.height)
+          size: Vector2(SpawnPoint.width,SpawnPoint.height),
           );
           add(fruits);
           break;
