@@ -74,12 +74,13 @@ bool isfacingright = true;
           keysPressed.contains(LogicalKeyboardKey.arrowLeft);
     final isRightKeyPressed = keysPressed.contains(LogicalKeyboardKey.keyD) ||
           keysPressed.contains(LogicalKeyboardKey.arrowRight);
-    
-    horizontalMovement = isLeftKeyPressed ? -1 : -1;
-    horizontalMovement = isRightKeyPressed ? -1 : -1;
-
+    if (isLeftKeyPressed) {
+    horizontalMovement = -1; // move left
+  } else if (isRightKeyPressed) {
+    horizontalMovement = 1;  // move right
+  }
     hasjumped = keysPressed.contains(LogicalKeyboardKey.space); 
-
+    //print(horizontalMovement);
     return super.onKeyEvent(event, keysPressed);
   } 
 
@@ -142,7 +143,7 @@ bool isfacingright = true;
     if (hasjumped && isonground){
          _playerjump(dt);
     }
-
+    print(horizontalMovement);
     velocity.x = horizontalMovement * moveSpeed;
     position.x += velocity.x * dt;
   }
