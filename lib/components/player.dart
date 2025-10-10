@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:game/components/collision_block.dart';
 import 'package:game/components/customHitBox.dart';
 import 'package:game/components/fruit.dart';
+import 'package:game/components/saw.dart';
 import 'package:game/components/utils.dart';
 import 'package:game/pixel_adventure.dart';
 
@@ -20,7 +21,7 @@ Player({
   this.character = "Ninja Frog",
   }): super(position: position);
 
-late final SpriteAnimation idleAnimation, runningAnimation, jumpingAnimation, fallingAnimation;
+late final SpriteAnimation idleAnimation, runningAnimation, fallingAnimation, jumpingAnimation;//appearingAnimation, hitAnimation;
 
 final double stepTime=0.05;
 final double _gravity = 15;
@@ -32,6 +33,7 @@ final double _terminalVelocity = 300;
 double horizontalMovement = 0;
 double moveSpeed = 100;
 Vector2 velocity = Vector2(0, 0);
+Vector2 startingPosition = Vector2.zero();
 List<CollisionBlock> collisionBlocks = [];
 
 customHitBox hitbox =customHitBox(
@@ -48,7 +50,8 @@ bool isfacingright = true;
   @override
   FutureOr<void> onLoad() {
     _loadAllAnimations();
-    debugMode = true;
+    //debugMode = true;
+    startingPosition = Vector2(position.x, position.y);
     add(RectangleHitbox(
       position: Vector2(hitbox.offsetX, hitbox.offsetY),
       size: Vector2(hitbox.width, hitbox.height)
@@ -85,10 +88,12 @@ bool isfacingright = true;
   } 
 
   void _loadAllAnimations() {
-    idleAnimation=_CreateaAnimation('Idle', 11);
+    idleAnimation= _CreateaAnimation('Idle', 11);
     runningAnimation= _CreateaAnimation('Run', 12);
     jumpingAnimation= _CreateaAnimation('Jump', 1);
     fallingAnimation= _CreateaAnimation('Fall', 1);
+    //hitAnimation= _CreateaAnimation('Hit', 7);
+    //appearingAnimation= _CreateaAnimation('Appearing (96x96)', 7);
 
  // list of all animations 
  animations = {
@@ -96,6 +101,8 @@ bool isfacingright = true;
   PlayerState.running: runningAnimation,
   PlayerState.jumping: jumpingAnimation,
   PlayerState.falling: fallingAnimation,
+  //PlayerState.hit: hitAnimation,
+  //PlayerState.appearing: appearingAnimation,
   };
   
   //set current animation
@@ -106,6 +113,7 @@ bool isfacingright = true;
  @override
   void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
     if(other is Fruit) other.collidedWithPlayer();
+    if(other is Saw) _respawn();
     super.onCollision(intersectionPoints, other);
   }
 
@@ -213,6 +221,11 @@ bool isfacingright = true;
   
 
   }
+  
+  void _respawn() {
+    position = startingPosition;
+  }
+  
   
   
 }
