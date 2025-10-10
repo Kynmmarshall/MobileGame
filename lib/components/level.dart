@@ -73,6 +73,7 @@ class Level extends World with HasGameReference<PixelAdventure>{
           );
           add(fruits);
           break;
+        case 'saw': 
         default: 
       
       }
