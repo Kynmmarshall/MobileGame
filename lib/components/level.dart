@@ -75,6 +75,7 @@ class Level extends World with HasGameReference<PixelAdventure>{
           add(fruits);
           break;
         case 'Saw':
+          
           final saw = Saw(
           position: Vector2(SpawnPoint.x,SpawnPoint.y),
           size: Vector2(SpawnPoint.width,SpawnPoint.height),
