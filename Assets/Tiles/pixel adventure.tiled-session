@@ -1,8 +1,4 @@
 {
-    "Map/SizeTest": {
-        "height": 4300,
-        "width": 2
-    },
     "activeFile": "C:/Users/kynm/Desktop/MobileGame/assets/tiles/Level-02.tmx",
     "expandedProjectPaths": [
         "."
@@ -13,9 +9,8 @@
         },
         "C:/Users/kynm/Desktop/MobileGame/assets/tiles/Level-01.tmx": {
             "expandedObjectLayers": [
-<<<<<<< HEAD
-                4,
-                5
+                3,
+                4
             ],
             "scale": 1.5,
             "selectedLayer": 0,
@@ -36,38 +31,15 @@
             }
         },
         "C:/Users/kynm/Desktop/MobileGame/assets/tiles/Level-02.tmx": {
-=======
-                3,
-                2
-            ],
-            "scale": 1.5229687499999998,
-            "selectedLayer": 1,
-            "viewCenter": {
-                "x": 360.1518415922849,
-                "y": 215.6971375807941
-            }
-        },
-        "C:/Users/kynm/Desktop/MobileGame/assets/tiles/Level-011.tmx": {
->>>>>>> 6ae736c0e08017b56a75ab7964ac6182ea30b26a
             "expandedObjectLayers": [
-                2
+                4,
+                5
             ],
             "scale": 1.5229687499999998,
             "selectedLayer": 0,
             "viewCenter": {
                 "x": 298.10198009644,
-                "y": 224.23309736329128
-            }
-        },
-        "C:/Users/kynm/Desktop/MobileGame/assets/tiles/Level-02.tmx": {
-            "expandedObjectLayers": [
-                4
-            ],
-            "scale": 1.5,
-            "selectedLayer": 0,
-            "viewCenter": {
-                "x": 365,
-                "y": 232.33333333333334
+                "y": 121.80157997332512
             }
         },
         "C:/Users/kynm/Desktop/MobileGame/assets/tiles/pixel adventure.tsx": {
@@ -90,20 +62,12 @@
             "scaleInEditor": 1
         }
     },
-    "last.externalTilesetPath": "C:/Users/kynm/Desktop/MobileGame/assets/tiles",
-    "last.imagePath": "C:/Users/kynm/Desktop/MobileGame/assets/images/Terrain",
-    "map.height": 23,
-    "map.lastUsedFormat": "tmx",
-    "map.tileHeight": 16,
-    "map.tileWidth": 16,
-    "map.width": 40,
     "openFiles": [
         "pixel adventure.tsx",
         "Level-01.tmx",
         "C:/Users/kynm/Desktop/MobileGame/assets/tiles/Level-02.tmx"
     ],
     "project": "pixel adventure.tiled-project",
-    "property.type": "float",
     "recentFiles": [
         "pixel adventure.tsx",
         "Level-01.tmx",

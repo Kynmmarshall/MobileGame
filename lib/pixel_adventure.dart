@@ -25,7 +25,7 @@ with HasKeyboardHandlerComponents, DragCallbacks , HasCollisionDetection{
     @override
   final world = Level(
     player: player,
-    levelName: 'Level-01', 
+    levelName: 'Level-02', 
   );
 
     cam= CameraComponent.withFixedResolution(world: world, width: 640, height: 360);
