@@ -57,7 +57,7 @@ bool isfacingright = true;
       size: Vector2(hitbox.width, hitbox.height)
     ));
     return super.onLoad();
-  }
+  } 
 
   //Updates the values of variables in the program (Inbuilt function would use it to midify player position)
   @override
@@ -151,7 +151,6 @@ bool isfacingright = true;
     if (hasjumped && isonground){
          _playerjump(dt);
     }
-    print(horizontalMovement);
     velocity.x = horizontalMovement * moveSpeed;
     position.x += velocity.x * dt;
   }
@@ -224,8 +223,8 @@ bool isfacingright = true;
   
   void _respawn() {
     position = startingPosition;
+    
   }
-  
   
   
 }

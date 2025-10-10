@@ -11,7 +11,7 @@ import 'package:game/components/level.dart';
 class PixelAdventure extends FlameGame 
 with HasKeyboardHandlerComponents, DragCallbacks , HasCollisionDetection{
   @override
-  Color backgroundColor() => const Color(0xFF211F30);
+  Color backgroundColor() => const Color.fromARGB(255, 34, 32, 53);
   late final CameraComponent cam;
   Player player = Player(character: 'Ninja Frog');
   late JoystickComponent joystick;
