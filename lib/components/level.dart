@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flame/components.dart';
 import 'package:flame_tiled/flame_tiled.dart';
-import 'package:flutter/foundation.dart';
 import 'package:game/components/Background_tile.dart';
 import 'package:game/components/collision_block.dart';
 import 'package:game/components/fruit.dart';
@@ -63,10 +62,12 @@ class Level extends World with HasGameReference<PixelAdventure>{
     {
       for (final SpawnPoint in SpawnPointLayer.objects){
       switch (SpawnPoint.class_){
+
         case 'Player':
           add(player);
           player.position = Vector2(SpawnPoint.x,SpawnPoint.y);
           break;
+
         case 'Fruits':
           final fruits = Fruit(
           fruit: SpawnPoint.name,
@@ -75,8 +76,8 @@ class Level extends World with HasGameReference<PixelAdventure>{
           );
           add(fruits);
           break;
+
         case 'Saw':
-          
           final saw = Saw(
           position: Vector2(SpawnPoint.x,SpawnPoint.y),
           size: Vector2(SpawnPoint.width,SpawnPoint.height),
@@ -86,6 +87,8 @@ class Level extends World with HasGameReference<PixelAdventure>{
           );
           add(saw);
           break;
+        case 'Checkpoint':
+          
         default: 
       
       }
