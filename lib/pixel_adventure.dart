@@ -73,7 +73,7 @@ with HasKeyboardHandlerComponents, DragCallbacks , HasCollisionDetection{
   }
   
   void loadNextLevel() {
-    if(currentLevelIndex < levelNames.length - 2){
+    if(currentLevelIndex < levelNames.length - 1){
       currentLevelIndex ++;
       _loadLevel();
     }

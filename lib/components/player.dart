@@ -279,7 +279,7 @@ bool reachedCheckpoint = false;
       reachedCheckpoint = false;
       position = Vector2.all(-640);
       Future.delayed(const Duration(seconds: 3),
-    () {
+    () {scale.x = 1;
         game.loadNextLevel();
     });
     });
