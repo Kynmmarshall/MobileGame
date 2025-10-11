@@ -12,25 +12,22 @@ class PixelAdventure extends FlameGame
 with HasKeyboardHandlerComponents, DragCallbacks , HasCollisionDetection{
   @override
   Color backgroundColor() => const Color.fromARGB(255, 34, 32, 53);
-  late final CameraComponent cam;
+  late CameraComponent cam;
   Player player = Player(character: 'Ninja Frog');
   late JoystickComponent joystick;
   bool showjoystick = true;
   
+  List<String> levelNames = ['level-01', 'level-02'];
+  int currentLevelIndex = 0;
+
   @override
   FutureOr<void> onLoad() async{
   
     //locate all images into the cache
     await images.loadAllImages();
-    @override
-  final world = Level(
-    player: player,
-    levelName: 'Level-01', 
-  );
 
-    cam= CameraComponent.withFixedResolution(world: world, width: 640, height: 360);
-    cam.viewfinder.anchor= Anchor.topLeft;
-    addAll([cam,world]);  
+    _loadLevel();
+
     if (showjoystick){
     addjoystick();}
     return super.onLoad();
@@ -73,5 +70,32 @@ with HasKeyboardHandlerComponents, DragCallbacks , HasCollisionDetection{
       default:
        player.horizontalMovement = 0;
     }
+  }
+  
+  void loadNextLevel() {
+    if(currentLevelIndex < levelNames.length - 2){
+      currentLevelIndex ++;
+      _loadLevel();
+    }
+    else{
+      //No more levels
+    }
+  }
+
+  void _loadLevel() {
+  Future.delayed(const Duration(seconds: 1,),(){
+    Level world = Level(
+    player: player,
+    levelName: levelNames[currentLevelIndex], 
+  );
+
+    cam = CameraComponent.withFixedResolution(
+      world: world,
+       width: 640, 
+       height: 360);
+    cam.viewfinder.anchor= Anchor.topLeft;
+    addAll([cam,world]); 
+  });
+   
   } 
 }     

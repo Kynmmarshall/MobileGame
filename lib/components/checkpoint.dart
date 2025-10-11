@@ -18,7 +18,7 @@ class Checkpoint extends SpriteAnimationComponent  with HasGameReference<PixelAd
 
  @override
   FutureOr<void> onLoad() {
-    debugMode = true;
+    //debugMode = true;
     add(RectangleHitbox(
       position: Vector2(15, 88),
       size: Vector2(20,8),

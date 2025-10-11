@@ -11,7 +11,7 @@ import 'package:game/components/saw.dart';
 import 'package:game/components/utils.dart';
 import 'package:game/pixel_adventure.dart';
 
-enum PlayerState {idle, running, jumping, falling, hit, appearing}
+enum PlayerState {idle, running, jumping, falling, hit, appearing, disappearing}
 
 class Player extends SpriteAnimationGroupComponent with 
 HasGameReference<PixelAdventure>, KeyboardHandler , CollisionCallbacks{
@@ -48,7 +48,7 @@ bool hasjumped = false;
 bool isfacingright = true;
 bool gotHit = false;
 bool isstart = true;
-bool reachedChekpoint = false;
+bool reachedCheckpoint = false;
 
 
 // Loads Assets to the game (inbuilt function that can be modified)
@@ -69,7 +69,7 @@ bool reachedChekpoint = false;
     if (isstart){
       startingPosition = Vector2(position.x, position.y) ;
       isstart = false;}
-    if(!gotHit){
+    if(!gotHit && !reachedCheckpoint){
     _updatePlayerState();
     _updatePosition(dt);
     _checkHorizontalCollision();
@@ -113,7 +113,7 @@ bool reachedChekpoint = false;
   PlayerState.falling: fallingAnimation,
   PlayerState.hit: hitAnimation,
   PlayerState.appearing: appearingAnimation,
- // PlayerState.disappearing: disappearingAnimation,
+  PlayerState.disappearing: disappearingAnimation,
   };
   
   //set current animation
@@ -123,9 +123,10 @@ bool reachedChekpoint = false;
 
  @override
   void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
-    if(other is Fruit) other.collidedWithPlayer();
+    if(!reachedCheckpoint)
+    {if(other is Fruit) other.collidedWithPlayer();
     if(other is Saw) _respawn();
-    if(other is Checkpoint && !reachedChekpoint) _reachedChekpoint();
+    if(other is Checkpoint && !reachedCheckpoint) _reachedChekpoint();}
     super.onCollision(intersectionPoints, other);
   }
 
@@ -248,7 +249,9 @@ bool reachedChekpoint = false;
     current = PlayerState.hit;
 
     Future.delayed(animationsduration,
-    () {position = startingPosition - Vector2.all(96-64);
+    () {
+    scale.x = 1;
+    position = startingPosition - Vector2.all(32);
     current = PlayerState.appearing;
     Future.delayed(animationsduration,
     () {
@@ -264,10 +267,22 @@ bool reachedChekpoint = false;
   }
   
   void _reachedChekpoint() {
-    reachedChekpoint = true;
-    // Future.delayed(const Duration(milliseconds: 400),
-    // () {
-    // current = PlayerState.disappearing;});
+    reachedCheckpoint = true;
+    if(scale.x > 0){
+    position = position - Vector2.all(32);}
+    else if(scale.x < 0){
+      position = position - Vector2(32,-32);
+    }
+    current = PlayerState.disappearing;
+    Future.delayed(const Duration(milliseconds: 400),
+    () {
+      reachedCheckpoint = false;
+      position = Vector2.all(-640);
+      Future.delayed(const Duration(seconds: 3),
+    () {
+        game.loadNextLevel();
+    });
+    });
   }
   
   
