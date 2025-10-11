@@ -6,6 +6,7 @@ import 'package:game/components/Background_tile.dart';
 import 'package:game/components/collision_block.dart';
 import 'package:game/components/fruit.dart';
 import 'package:game/components/saw.dart';
+import 'package:game/components/checkpoint.dart';
 import 'package:game/components/player.dart';
 import 'package:game/pixel_adventure.dart';
 
@@ -65,22 +66,22 @@ class Level extends World with HasGameReference<PixelAdventure>{
 
         case 'Player':
           add(player);
-          player.position = Vector2(SpawnPoint.x,SpawnPoint.y);
+          player.position = Vector2( SpawnPoint.x, SpawnPoint.y);
           break;
 
         case 'Fruits':
           final fruits = Fruit(
           fruit: SpawnPoint.name,
-          position: Vector2(SpawnPoint.x,SpawnPoint.y),
-          size: Vector2(SpawnPoint.width,SpawnPoint.height),
+          position: Vector2( SpawnPoint.x, SpawnPoint.y),
+          size: Vector2( SpawnPoint.width, SpawnPoint.height),
           );
           add(fruits);
           break;
 
         case 'Saw':
           final saw = Saw(
-          position: Vector2(SpawnPoint.x,SpawnPoint.y),
-          size: Vector2(SpawnPoint.width,SpawnPoint.height),
+          position: Vector2( SpawnPoint.x, SpawnPoint.y),
+          size: Vector2( SpawnPoint.width, SpawnPoint.height),
           isvertical: SpawnPoint.properties.getValue('isvertical'),
           offsetNeg: SpawnPoint.properties.getValue('offsetneg'),
           offsetPos: SpawnPoint.properties.getValue('offsetpos'),
@@ -88,7 +89,11 @@ class Level extends World with HasGameReference<PixelAdventure>{
           add(saw);
           break;
         case 'Checkpoint':
-          
+          final checkpoint = Checkpoint(
+            position: Vector2( SpawnPoint.x ,  SpawnPoint.y),
+            size: Vector2( SpawnPoint.width, SpawnPoint.y),
+          );
+          add(checkpoint);
         default: 
       
       }
