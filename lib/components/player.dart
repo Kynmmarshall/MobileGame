@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flutter/services.dart';
+import 'package:game/components/checkpoint.dart';
 import 'package:game/components/collision_block.dart';
 import 'package:game/components/customHitBox.dart';
 import 'package:game/components/fruit.dart';
@@ -21,7 +22,7 @@ Player({
   this.character = "Ninja Frog",
   }): super(position: position);
 
-late final SpriteAnimation idleAnimation, runningAnimation, fallingAnimation, hitAnimation, jumpingAnimation, appearingAnimation;
+late final SpriteAnimation idleAnimation, runningAnimation, fallingAnimation, hitAnimation, jumpingAnimation, appearingAnimation, disappearingAnimation;
 
 final double stepTime=0.05;
 final double _gravity = 15;
@@ -47,6 +48,8 @@ bool hasjumped = false;
 bool isfacingright = true;
 bool gotHit = false;
 bool isstart = true;
+bool reachedChekpoint = false;
+
 
 // Loads Assets to the game (inbuilt function that can be modified)
   @override
@@ -98,12 +101,9 @@ bool isstart = true;
     jumpingAnimation= _CreateaAnimation('Jump', 1);
     fallingAnimation= _CreateaAnimation('Fall', 1);
     hitAnimation= _CreateaAnimation('Hit', 7);
-    appearingAnimation= SpriteAnimation.fromFrameData( game.images.fromCache('Main Characters/Appearing (96x96).png'), SpriteAnimationData.sequenced(
-      amount: 7, 
-      stepTime: stepTime, 
-      textureSize: Vector2(96, 96),
-      ),
-      );
+    appearingAnimation= _specialAnimation('Appearing', 7);
+    disappearingAnimation= _specialAnimation('Disappearing', 7);
+    
 
  // list of all animations 
  animations = {
@@ -113,6 +113,7 @@ bool isstart = true;
   PlayerState.falling: fallingAnimation,
   PlayerState.hit: hitAnimation,
   PlayerState.appearing: appearingAnimation,
+ // PlayerState.disappearing: disappearingAnimation,
   };
   
   //set current animation
@@ -124,6 +125,7 @@ bool isstart = true;
   void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
     if(other is Fruit) other.collidedWithPlayer();
     if(other is Saw) _respawn();
+    if(other is Checkpoint && !reachedChekpoint) _reachedChekpoint();
     super.onCollision(intersectionPoints, other);
   }
 
@@ -136,6 +138,15 @@ bool isstart = true;
       );
  }
  
+ SpriteAnimation _specialAnimation(String name, int amount) {
+    return SpriteAnimation.fromFrameData( game.images.fromCache('Main Characters/$name (96x96).png'), SpriteAnimationData.sequenced(
+      amount: amount, 
+      stepTime: stepTime, 
+      textureSize: Vector2(96, 96),
+      ),
+      );
+  }
+  
   void _updatePlayerState() {
     PlayerState playerState = PlayerState.idle;
 
@@ -156,7 +167,7 @@ bool isstart = true;
 
     current = playerState;
   }
-
+ 
   void _updatePosition(double dt) {
     if (hasjumped && isonground){
          _playerjump(dt);
@@ -251,6 +262,15 @@ bool isstart = true;
   });
     
   }
+  
+  void _reachedChekpoint() {
+    reachedChekpoint = true;
+    // Future.delayed(const Duration(milliseconds: 400),
+    // () {
+    // current = PlayerState.disappearing;});
+  }
+  
+  
   
   
 }
