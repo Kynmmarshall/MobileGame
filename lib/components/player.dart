@@ -10,7 +10,7 @@ import 'package:game/components/saw.dart';
 import 'package:game/components/utils.dart';
 import 'package:game/pixel_adventure.dart';
 
-enum PlayerState {idle, running, jumping, falling}
+enum PlayerState {idle, running, jumping, falling, hit, appearing}
 
 class Player extends SpriteAnimationGroupComponent with 
 HasGameReference<PixelAdventure>, KeyboardHandler , CollisionCallbacks{
@@ -21,7 +21,7 @@ Player({
   this.character = "Ninja Frog",
   }): super(position: position);
 
-late final SpriteAnimation idleAnimation, runningAnimation, fallingAnimation, jumpingAnimation;//appearingAnimation, hitAnimation;
+late final SpriteAnimation idleAnimation, runningAnimation, fallingAnimation, hitAnimation, jumpingAnimation, appearingAnimation;
 
 final double stepTime=0.05;
 final double _gravity = 15;
@@ -45,13 +45,14 @@ customHitBox hitbox =customHitBox(
 bool isonground = false;
 bool hasjumped = false;
 bool isfacingright = true;
+bool gotHit = false;
+bool isstart = true;
 
 // Loads Assets to the game (inbuilt function that can be modified)
   @override
   FutureOr<void> onLoad() {
     _loadAllAnimations();
     //debugMode = true;
-    startingPosition = Vector2(position.x, position.y);
     add(RectangleHitbox(
       position: Vector2(hitbox.offsetX, hitbox.offsetY),
       size: Vector2(hitbox.width, hitbox.height)
@@ -62,11 +63,15 @@ bool isfacingright = true;
   //Updates the values of variables in the program (Inbuilt function would use it to midify player position)
   @override
   void update(double dt) {
+    if (isstart){
+      startingPosition = Vector2(position.x, position.y) ;
+      isstart = false;}
+    if(!gotHit){
     _updatePlayerState();
     _updatePosition(dt);
     _checkHorizontalCollision();
     _applyGravity(dt);
-    _checkVerticalCollision();
+    _checkVerticalCollision();}
     super.update(dt);
   }
 
@@ -92,8 +97,13 @@ bool isfacingright = true;
     runningAnimation= _CreateaAnimation('Run', 12);
     jumpingAnimation= _CreateaAnimation('Jump', 1);
     fallingAnimation= _CreateaAnimation('Fall', 1);
-    //hitAnimation= _CreateaAnimation('Hit', 7);
-    //appearingAnimation= _CreateaAnimation('Appearing (96x96)', 7);
+    hitAnimation= _CreateaAnimation('Hit', 7);
+    appearingAnimation= SpriteAnimation.fromFrameData( game.images.fromCache('Main Characters/Appearing (96x96).png'), SpriteAnimationData.sequenced(
+      amount: 7, 
+      stepTime: stepTime, 
+      textureSize: Vector2(96, 96),
+      ),
+      );
 
  // list of all animations 
  animations = {
@@ -101,8 +111,8 @@ bool isfacingright = true;
   PlayerState.running: runningAnimation,
   PlayerState.jumping: jumpingAnimation,
   PlayerState.falling: fallingAnimation,
-  //PlayerState.hit: hitAnimation,
-  //PlayerState.appearing: appearingAnimation,
+  PlayerState.hit: hitAnimation,
+  PlayerState.appearing: appearingAnimation,
   };
   
   //set current animation
@@ -222,7 +232,23 @@ bool isfacingright = true;
   }
   
   void _respawn() {
-    position = startingPosition;
+    gotHit = true;
+    const animationsduration= const Duration(milliseconds: 400);
+    current = PlayerState.hit;
+
+    Future.delayed(animationsduration,
+    () {position = startingPosition - Vector2.all(96-64);
+    current = PlayerState.appearing;
+    Future.delayed(animationsduration,
+    () {
+        velocity = Vector2.zero();
+        position = startingPosition;
+        _updatePlayerState();
+        gotHit = false;
+        Future.delayed(animationsduration,
+    () {});
+        });
+  });
     
   }
   

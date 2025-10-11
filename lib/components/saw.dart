@@ -1,9 +1,6 @@
 import 'dart:async';
-
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
 import 'package:game/pixel_adventure.dart';
 
 class Saw extends SpriteAnimationComponent with HasGameReference<PixelAdventure>{
