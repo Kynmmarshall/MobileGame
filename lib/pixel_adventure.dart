@@ -10,7 +10,7 @@ import 'package:game/components/player.dart';
 import 'package:game/components/level.dart';
 
 class PixelAdventure extends FlameGame 
-with HasKeyboardHandlerComponents, DragCallbacks , HasCollisionDetection{
+with HasKeyboardHandlerComponents, DragCallbacks , HasCollisionDetection, TapCallbacks{
   @override
   Color backgroundColor() => const Color.fromARGB(255, 34, 32, 53);
   late CameraComponent cam;
@@ -23,23 +23,26 @@ with HasKeyboardHandlerComponents, DragCallbacks , HasCollisionDetection{
 
   @override
   FutureOr<void> onLoad() async{
-  
     //locate all images into the cache
     await images.loadAllImages();
 
     _loadLevel();
 
     if (showControls){
-    addjoystick();}
+    addjoystick();
     add(JumpButton());
+    }
+    
     return super.onLoad();
   }
+
   @override
   void update(double dt) {
     if (showControls){
     updatejoystick();}
     super.update(dt);
   }
+
   void addjoystick() {
     joystick = JoystickComponent(
       knob: SpriteComponent(
