@@ -109,9 +109,9 @@ bool reachedCheckpoint = false;
     runningAnimation= _CreateaAnimation('Run', 12);
     jumpingAnimation= _CreateaAnimation('Jump', 1);
     fallingAnimation= _CreateaAnimation('Fall', 1);
-    hitAnimation= _CreateaAnimation('Hit', 7);
-    appearingAnimation= _specialAnimation('Appearing', 7);
-    disappearingAnimation= _specialAnimation('Disappearing', 7);
+    hitAnimation= _CreateaAnimation('Hit', 7)..loop = false;
+    appearingAnimation= _specialAnimation('Appearing', 7)..loop = false;
+    disappearingAnimation= _specialAnimation('Disappearing', 7)..loop = false;
     
 
  // list of all animations 
@@ -129,14 +129,13 @@ bool reachedCheckpoint = false;
  current = PlayerState.idle;
   
  }
-
- @override
-  void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
+  @override
+  void onCollisionStart(Set<Vector2> intersectionPoints, PositionComponent other) {
     if(!reachedCheckpoint)
     {if(other is Fruit) other.collidedWithPlayer();
     if(other is Saw) _respawn();
     if(other is Checkpoint && !reachedCheckpoint) _reachedChekpoint();}
-    super.onCollision(intersectionPoints, other);
+    super.onCollisionStart(intersectionPoints, other);
   }
 
  SpriteAnimation _CreateaAnimation(String animation, int amount){
@@ -252,35 +251,35 @@ bool reachedCheckpoint = false;
 
   }
   
-  void _respawn() {
+  void _respawn() async {
     gotHit = true;
-    const animationsduration= const Duration(milliseconds: 400);
+    const cantMoveduration= const Duration(milliseconds: 400);
+    
     current = PlayerState.hit;
 
-    Future.delayed(animationsduration,
-    () async {
+    await animationTicker?.completed;
+    animationTicker?.reset();
+
     scale.x = 1;
     position = startingPosition - Vector2.all(32);
     current = PlayerState.appearing;
-    Future.delayed(animationsduration,
-    () async {
-        velocity = Vector2.zero();
-        position = startingPosition;
-        _updatePlayerState();
-        gotHit = false;
-        Future.delayed(animationsduration,
-    () async {});
-        });
-  });
-    
+
+    await animationTicker?.completed;
+    animationTicker?.reset();
+
+    velocity = Vector2.zero();
+    position = startingPosition;
+    _updatePlayerState();
+    Future.delayed(cantMoveduration,
+    () async {gotHit = false;});
+        
   }
-  
   void _reachedChekpoint() {
     reachedCheckpoint = true;
     if(scale.x > 0){
     position = position - Vector2.all(32);}
     else if(scale.x < 0){
-      position = position - Vector2(32,-32);
+      position = position - Vector2(-32,32);
     }
     current = PlayerState.disappearing;
     Future.delayed(const Duration(milliseconds: 400),

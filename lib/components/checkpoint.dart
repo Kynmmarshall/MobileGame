@@ -49,7 +49,7 @@ class Checkpoint extends SpriteAnimationComponent  with HasGameReference<PixelAd
     super.onCollision(intersectionPoints, other);
   }
   
-  void _reachedChekpoint() {
+  void _reachedChekpoint() async {
     reachedChekpoint = true;
     animation= SpriteAnimation.fromFrameData(
       game.images.fromCache('Items/Checkpoints/Checkpoint/Checkpoint (Flag Out) (64x64).png'), 
@@ -60,9 +60,9 @@ class Checkpoint extends SpriteAnimationComponent  with HasGameReference<PixelAd
         loop: false
         )
         );
-    const flagDuration = Duration(milliseconds: 1040);
-    Future.delayed(flagDuration, () async {
-      animation= SpriteAnimation.fromFrameData(
+    await animationTicker?.completed;
+    animationTicker?.reset();
+    animation= SpriteAnimation.fromFrameData(
       game.images.fromCache('Items/Checkpoints/Checkpoint/Checkpoint (Flag Idle)(64x64).png'), 
       SpriteAnimationData.sequenced(
         amount: 10, 
@@ -73,7 +73,7 @@ class Checkpoint extends SpriteAnimationComponent  with HasGameReference<PixelAd
         Future.delayed(const Duration(seconds:4), () async {
             removeFromParent();
         });
-    });
+
   
   }
 
