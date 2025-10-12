@@ -61,7 +61,7 @@ CollisionCallbacks{
       _collected = true;
     }
     Future.delayed(const Duration(milliseconds: 400),
-    () => removeFromParent(),
+    () async => removeFromParent(),
     );
   }
 

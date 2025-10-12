@@ -61,7 +61,7 @@ class Checkpoint extends SpriteAnimationComponent  with HasGameReference<PixelAd
         )
         );
     const flagDuration = Duration(milliseconds: 1040);
-    Future.delayed(flagDuration, (){
+    Future.delayed(flagDuration, () async {
       animation= SpriteAnimation.fromFrameData(
       game.images.fromCache('Items/Checkpoints/Checkpoint/Checkpoint (Flag Idle)(64x64).png'), 
       SpriteAnimationData.sequenced(
@@ -70,7 +70,7 @@ class Checkpoint extends SpriteAnimationComponent  with HasGameReference<PixelAd
         textureSize: Vector2.all(64),
         )
         );
-        Future.delayed(const Duration(seconds:4), (){
+        Future.delayed(const Duration(seconds:4), () async {
             removeFromParent();
         });
     });

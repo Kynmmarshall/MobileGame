@@ -258,18 +258,18 @@ bool reachedCheckpoint = false;
     current = PlayerState.hit;
 
     Future.delayed(animationsduration,
-    () {
+    () async {
     scale.x = 1;
     position = startingPosition - Vector2.all(32);
     current = PlayerState.appearing;
     Future.delayed(animationsduration,
-    () {
+    () async {
         velocity = Vector2.zero();
         position = startingPosition;
         _updatePlayerState();
         gotHit = false;
         Future.delayed(animationsduration,
-    () {});
+    () async {});
         });
   });
     
