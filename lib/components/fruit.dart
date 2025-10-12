@@ -16,8 +16,6 @@ CollisionCallbacks{
       super(
         position: position, 
         size: size);
-
-  bool _collected = false;
   final double stepTime = 0.05;
   
   customHitBox fruitHitBox = customHitBox(
@@ -47,9 +45,8 @@ CollisionCallbacks{
     return super.onLoad();
   }
   
-  void collidedWithPlayer() {
-    if(!_collected){
-      animation = SpriteAnimation.fromFrameData(
+  void collidedWithPlayer() async{
+    animation = SpriteAnimation.fromFrameData(
       game.images.fromCache('Items/Fruits/Collected.png'), 
       SpriteAnimationData.sequenced(
       amount: 6, 
@@ -58,11 +55,9 @@ CollisionCallbacks{
       loop: false
       ),
       );
-      _collected = true;
-    }
-    Future.delayed(const Duration(milliseconds: 400),
-    () async => removeFromParent(),
-    );
+    await animationTicker?.completed;
+    removeFromParent();
+  
   }
 
    

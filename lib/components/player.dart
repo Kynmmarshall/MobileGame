@@ -110,8 +110,8 @@ bool reachedCheckpoint = false;
     jumpingAnimation= _CreateaAnimation('Jump', 1);
     fallingAnimation= _CreateaAnimation('Fall', 1);
     hitAnimation= _CreateaAnimation('Hit', 7)..loop = false;
-    appearingAnimation= _specialAnimation('Appearing', 7)..loop = false;
-    disappearingAnimation= _specialAnimation('Disappearing', 7)..loop = false;
+    appearingAnimation= _specialAnimation('Appearing', 7);
+    disappearingAnimation= _specialAnimation('Disappearing', 7);
     
 
  // list of all animations 
@@ -152,6 +152,7 @@ bool reachedCheckpoint = false;
       amount: amount, 
       stepTime: stepTime, 
       textureSize: Vector2(96, 96),
+      loop : false
       ),
       );
   }
