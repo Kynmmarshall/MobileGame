@@ -5,6 +5,7 @@ import 'package:flame/events.dart';
 import 'package:flame/input.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/painting.dart';
+import 'package:game/components/jump_button.dart';
 import 'package:game/components/player.dart';
 import 'package:game/components/level.dart';
 
@@ -15,7 +16,7 @@ with HasKeyboardHandlerComponents, DragCallbacks , HasCollisionDetection{
   late CameraComponent cam;
   Player player = Player(character: 'Ninja Frog');
   late JoystickComponent joystick;
-  bool showjoystick = true;
+  bool showControls = true;
   
   List<String> levelNames = ['level-01', 'level-02'];
   int currentLevelIndex = 0;
@@ -28,13 +29,14 @@ with HasKeyboardHandlerComponents, DragCallbacks , HasCollisionDetection{
 
     _loadLevel();
 
-    if (showjoystick){
+    if (showControls){
     addjoystick();}
+    add(JumpButton());
     return super.onLoad();
   }
   @override
   void update(double dt) {
-    if (showjoystick){
+    if (showControls){
     updatejoystick();}
     super.update(dt);
   }
