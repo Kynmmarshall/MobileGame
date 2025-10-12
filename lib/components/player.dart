@@ -26,7 +26,7 @@ late final SpriteAnimation idleAnimation, runningAnimation, fallingAnimation, hi
 
 final double stepTime=0.05;
 final double _gravity = 15;
-final double _jumpForce = 300;
+final double _jumpForce = 360;
 final double _terminalVelocity = 300;
 
 
@@ -42,6 +42,9 @@ customHitBox hitbox =customHitBox(
   offsetY: 4,
    width: 14, 
    height: 28);
+
+double fixedDeltaTime = 1/60;
+double accumulatedTime = 0;
 
 bool isonground = false;
 bool hasjumped = false;
@@ -66,15 +69,21 @@ bool reachedCheckpoint = false;
   //Updates the values of variables in the program (Inbuilt function would use it to midify player position)
   @override
   void update(double dt) {
+    accumulatedTime +=dt;
+
+    while(accumulatedTime>=fixedDeltaTime){
+      if(!gotHit && !reachedCheckpoint){
+    _updatePlayerState();
+    _updatePosition(fixedDeltaTime);
+    _checkHorizontalCollision();
+    _applyGravity(fixedDeltaTime);
+    _checkVerticalCollision();}
+    accumulatedTime-=fixedDeltaTime;
+    }
+    
     if (isstart){
       startingPosition = Vector2(position.x, position.y) ;
       isstart = false;}
-    if(!gotHit && !reachedCheckpoint){
-    _updatePlayerState();
-    _updatePosition(dt);
-    _checkHorizontalCollision();
-    _applyGravity(dt);
-    _checkVerticalCollision();}
     super.update(dt);
   }
 

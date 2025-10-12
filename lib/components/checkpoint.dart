@@ -70,7 +70,7 @@ class Checkpoint extends SpriteAnimationComponent  with HasGameReference<PixelAd
         textureSize: Vector2.all(64),
         )
         );
-        Future.delayed(const Duration(seconds:3), (){
+        Future.delayed(const Duration(seconds:4), (){
             removeFromParent();
         });
     });
