@@ -255,7 +255,7 @@ bool reachedCheckpoint = false;
   }
   
   void _respawn() async {
-    if (game.playsound) FlameAudio.play('sounds/appear.wav', volume: game.soundVolume);
+    if (game.playsound) FlameAudio.play('appear.wav', volume: game.soundVolume);
     gotHit = true;
     const cantMoveduration= Duration(milliseconds: 400);
     
