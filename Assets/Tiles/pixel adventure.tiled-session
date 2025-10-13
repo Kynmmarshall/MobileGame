@@ -32,13 +32,13 @@
         },
         "C:/Users/kynm/Desktop/MobileGame/assets/tiles/Level-02.tmx": {
             "expandedObjectLayers": [
-                5,
-                4
+                4,
+                5
             ],
             "scale": 1.5229687499999998,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 281.68667282240693,
+                "x": 281.3583666769263,
                 "y": 121.80157997332512
             }
         },

@@ -26,15 +26,17 @@ with HasKeyboardHandlerComponents, DragCallbacks , HasCollisionDetection, TapCal
   @override
   FutureOr<void> onLoad() async{
     //locate all images into the cache
+    print('Starting game load...');
     await images.loadAllImages();
-
+    print('Starting game load...');
     _loadLevel();
 
     if (showControls){
+    print('Adding controls...');
     addjoystick();
     add(JumpButton());
     }
-    
+    print('Game load complete');
     return super.onLoad();
   }
 
@@ -92,6 +94,7 @@ with HasKeyboardHandlerComponents, DragCallbacks , HasCollisionDetection, TapCal
 
   void _loadLevel() {
   Future.delayed(const Duration(seconds: 1,),(){
+    print('Loading level: ${levelNames[currentLevelIndex]}');
     Level world = Level(
     player: player,
     levelName: levelNames[currentLevelIndex], 
@@ -102,6 +105,9 @@ with HasKeyboardHandlerComponents, DragCallbacks , HasCollisionDetection, TapCal
        width: 640, 
        height: 360);
     cam.viewfinder.anchor= Anchor.topLeft;
+    if (children.contains(cam)) {
+    remove(cam);
+  }
     addAll([cam,world]); 
   });
    

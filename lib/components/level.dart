@@ -21,13 +21,17 @@ class Level extends World with HasGameReference<PixelAdventure>{
 
   @override
   FutureOr<void> onLoad() async{
+    try{
     level= await TiledComponent.load("$levelName.tmx", Vector2.all(16));
     add(level);
 
    _scrollingBackground();
    _spawningObject();
    _addCollisions();
-    
+    } catch (e) {
+    print('Error loading level: $e');
+    // Add a fallback background or error message
+  }
     return super.onLoad();
   }
   
@@ -52,6 +56,7 @@ class Level extends World with HasGameReference<PixelAdventure>{
     if (SpawnPointLayer != null)
     {
       for (final SpawnPoint in SpawnPointLayer.objects){
+      try {
       switch (SpawnPoint.class_){
 
         case 'Player':
@@ -69,23 +74,33 @@ class Level extends World with HasGameReference<PixelAdventure>{
           break;
 
         case 'Saw':
-          final saw = Saw(
-          position: Vector2( SpawnPoint.x, SpawnPoint.y),
-          size: Vector2( SpawnPoint.width, SpawnPoint.height),
-          isvertical: SpawnPoint.properties.getValue('isvertical'),
-          offsetNeg: SpawnPoint.properties.getValue('offsetneg'),
-          offsetPos: SpawnPoint.properties.getValue('offsetpos'),
-          );
-          add(saw);
-          break;
+            final isVertical = SpawnPoint.properties.getValue('isvertical') ?? false;
+            final offsetNeg = SpawnPoint.properties.getValue('offsetneg') ?? 0.0;
+            final offsetPos = SpawnPoint.properties.getValue('offsetpos') ?? 0.0;
+  
+            final saw = Saw(
+              position: Vector2(SpawnPoint.x, SpawnPoint.y),
+              size: Vector2(SpawnPoint.width, SpawnPoint.height),
+              isvertical: isVertical,
+              offsetNeg: offsetNeg,
+              offsetPos: offsetPos,
+            );
+            add(saw);
+            break;
         case 'Checkpoint':
           final checkpoint = Checkpoint(
             position: Vector2( SpawnPoint.x ,  SpawnPoint.y),
-            size: Vector2( SpawnPoint.width, SpawnPoint.y),
+            size: Vector2( SpawnPoint.width, SpawnPoint.height),
           );
           add(checkpoint);
         default: 
       
+      }
+      } catch (e) {
+        print('Error spawning ${SpawnPoint.class_}: $e');
+        print('SpawnPoint details - x: ${SpawnPoint.x}, y: ${SpawnPoint.y}, '
+              'width: ${SpawnPoint.width}, height: ${SpawnPoint.height}, '
+              'name: ${SpawnPoint.name}');
       }
     }
     }
