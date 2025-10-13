@@ -17,7 +17,7 @@ with HasKeyboardHandlerComponents, DragCallbacks , HasCollisionDetection, TapCal
   Player player = Player(character: 'Ninja Frog');
   late JoystickComponent joystick;
   bool showControls = true;
-  bool playsound = false;
+  bool playsound = true;
   double soundVolume = 1.0;
   
   List<String> levelNames = ['level-01', 'level-02'];

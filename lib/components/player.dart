@@ -215,7 +215,7 @@ bool reachedCheckpoint = false;
   }
   
   void _playerjump(double dt) {
-    if (game.playsound) FlameAudio.play('jump.wave', volume: game.soundVolume);
+    if (game.playsound) FlameAudio.play('sounds/jump.wav', volume: game.soundVolume);
     velocity.y = -_jumpForce;
     position.y += velocity.y * dt;
     hasjumped = false;
@@ -255,6 +255,7 @@ bool reachedCheckpoint = false;
   }
   
   void _respawn() async {
+    if (game.playsound) FlameAudio.play('sounds/appear.wav', volume: game.soundVolume);
     gotHit = true;
     const cantMoveduration= Duration(milliseconds: 400);
     
@@ -277,22 +278,24 @@ bool reachedCheckpoint = false;
     () async {gotHit = false;});
         
   }
-  void _reachedChekpoint() {
+  void _reachedChekpoint() async{
     reachedCheckpoint = true;
+    if (game.playsound) FlameAudio.play('sounds/appear.wav', volume: game.soundVolume);  
     if(scale.x > 0){
     position = position - Vector2.all(32);}
     else if(scale.x < 0){
       position = position - Vector2(-32,32);
     }
     current = PlayerState.disappearing;
-    Future.delayed(const Duration(milliseconds: 400),
-    () {
-      reachedCheckpoint = false;
-      position = Vector2.all(-640);
-      Future.delayed(const Duration(seconds: 3),
+
+    await animationTicker?.completed;
+    animationTicker?.reset();
+
+    reachedCheckpoint = false;
+    position = Vector2.all(-640);
+    Future.delayed(const Duration(seconds: 3),
     () {scale.x = 1;
         game.loadNextLevel();
-    });
     });
   }
   
