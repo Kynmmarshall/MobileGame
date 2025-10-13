@@ -17,6 +17,8 @@ with HasKeyboardHandlerComponents, DragCallbacks , HasCollisionDetection, TapCal
   Player player = Player(character: 'Ninja Frog');
   late JoystickComponent joystick;
   bool showControls = true;
+  bool playsound = false;
+  double soundVolume = 1.0;
   
   List<String> levelNames = ['level-01', 'level-02'];
   int currentLevelIndex = 0;
@@ -83,7 +85,8 @@ with HasKeyboardHandlerComponents, DragCallbacks , HasCollisionDetection, TapCal
       _loadLevel();
     }
     else{
-      //No more levels
+      currentLevelIndex = 0;
+      _loadLevel();
     }
   }
 

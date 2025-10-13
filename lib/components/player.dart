@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
+import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/services.dart';
 import 'package:game/components/checkpoint.dart';
 import 'package:game/components/collision_block.dart';
@@ -214,6 +215,7 @@ bool reachedCheckpoint = false;
   }
   
   void _playerjump(double dt) {
+    if (game.playsound) FlameAudio.play('jump.wave', volume: game.soundVolume);
     velocity.y = -_jumpForce;
     position.y += velocity.y * dt;
     hasjumped = false;
@@ -254,7 +256,7 @@ bool reachedCheckpoint = false;
   
   void _respawn() async {
     gotHit = true;
-    const cantMoveduration= const Duration(milliseconds: 400);
+    const cantMoveduration= Duration(milliseconds: 400);
     
     current = PlayerState.hit;
 
