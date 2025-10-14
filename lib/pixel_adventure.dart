@@ -23,8 +23,11 @@ with HasKeyboardHandlerComponents, DragCallbacks , HasCollisionDetection, TapCal
   List<String> levelNames = ['Level-01', 'Level-02'];
   int currentLevelIndex = 0;
 
+  bool controlsAdded = false;
+
   @override
   FutureOr<void> onLoad() async{
+    
     //locate all images into the cache
     print('Starting game load...');
     await images.loadAllImages();
@@ -36,12 +39,14 @@ with HasKeyboardHandlerComponents, DragCallbacks , HasCollisionDetection, TapCal
     addjoystick();
     add(JumpButton());
     }
+
     print('Game load complete');
     return super.onLoad();
   }
 
   @override
   void update(double dt) {
+
     if (showControls){
     updatejoystick();}
     super.update(dt);
