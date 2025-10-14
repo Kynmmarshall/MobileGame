@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="40" height="23" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="51">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="40" height="23" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="52">
  <tileset firstgid="1" source="pixel adventure.tsx"/>
- <tileset firstgid="243" source="pixel adventure.tsx"/>
  <objectgroup id="4" name="SpawnPoints">
   <object id="9" name="Player" type="Player" x="112" y="256" width="33.0868" height="34.925"/>
   <object id="38" name="Cherries" type="Fruits" x="64" y="96" width="32" height="32"/>
@@ -51,6 +50,7 @@
   <object id="35" x="384" y="240" width="64" height="16"/>
   <object id="36" x="480" y="240" width="96" height="16"/>
   <object id="50" x="528" y="320" width="48" height="16"/>
+  <object id="51" type="Checkpoint" x="512" y="224" width="64" height="96"/>
  </objectgroup>
  <layer id="1" name="Background" width="40" height="23">
   <properties>
@@ -77,7 +77,7 @@
 112,112,113,0,0,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,111,112,112,112,
 112,112,113,7,8,8,8,8,8,8,8,8,8,8,8,9,49,49,49,49,49,49,0,0,0,49,49,0,0,0,49,49,49,49,49,49,111,112,112,112,
 112,112,113,29,30,30,30,30,30,30,30,30,30,30,30,31,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,111,112,112,112,
-112,112,113,51,52,52,52,52,52,52,52,52,52,52,52,53,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,249,250,251,111,112,112,112,
+112,112,113,51,52,52,52,52,52,52,52,52,52,52,52,53,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,7,8,9,111,112,112,112,
 112,112,114,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,115,112,112,112,
 112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112
 </data>

@@ -23,7 +23,6 @@ with HasKeyboardHandlerComponents, DragCallbacks , HasCollisionDetection, TapCal
   List<String> levelNames = ['Level-01', 'Level-02'];
   int currentLevelIndex = 0;
 
-  bool controlsAdded = false;
 
   @override
   FutureOr<void> onLoad() async{
@@ -54,6 +53,7 @@ with HasKeyboardHandlerComponents, DragCallbacks , HasCollisionDetection, TapCal
 
   void addjoystick() {
     joystick = JoystickComponent(
+      priority : 10000000000,
       knob: SpriteComponent(
         sprite: Sprite(
         images.fromCache('Joystick components/knob.png'),
@@ -87,6 +87,7 @@ with HasKeyboardHandlerComponents, DragCallbacks , HasCollisionDetection, TapCal
   }
   
   void loadNextLevel() {
+    removeWhere((component) => component is Level);
     if(currentLevelIndex < levelNames.length - 1){
       currentLevelIndex ++;
       _loadLevel();

@@ -16,6 +16,7 @@ class JumpButton extends SpriteComponent with HasGameReference<PixelAdventure>, 
       game.size.x - margin - buttonSize,
       game.size.y  - margin - buttonSize,  
       );
+      priority = 10000000000;
     return super.onLoad();
   }
 
