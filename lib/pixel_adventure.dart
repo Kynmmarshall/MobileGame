@@ -20,7 +20,7 @@ with HasKeyboardHandlerComponents, DragCallbacks , HasCollisionDetection, TapCal
   bool playsound = true;
   double soundVolume = 1.0;
   
-  List<String> levelNames = ['level-01', 'level-02'];
+  List<String> levelNames = ['Level-01', 'Level-02'];
   int currentLevelIndex = 0;
 
   @override
