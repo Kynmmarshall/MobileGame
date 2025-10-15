@@ -4,6 +4,7 @@ import 'package:flame/components.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 import 'package:game/components/Background_tile.dart';
 import 'package:game/components/collision_block.dart';
+import 'package:game/components/enemies.dart';
 import 'package:game/components/fruit.dart';
 import 'package:game/components/saw.dart';
 import 'package:game/components/checkpoint.dart';
@@ -93,6 +94,17 @@ class Level extends World with HasGameReference<PixelAdventure>{
             size: Vector2( SpawnPoint.width, SpawnPoint.height),
           );
           add(checkpoint);
+        case 'Enemies':
+         final offsetNeg = SpawnPoint.properties.getValue('offsetneg') ?? 0.0;
+            final offsetPos = SpawnPoint.properties.getValue('offsetpos') ?? 0.0;
+          final enemies = Enemies(
+            enemy : SpawnPoint.name,
+            position: Vector2( SpawnPoint.x ,  SpawnPoint.y),
+            size: Vector2( SpawnPoint.width, SpawnPoint.height),
+            offsetNeg : offsetNeg,
+            offsetPos : offsetPos
+          );
+          add(enemies);
         default: 
       
       }

@@ -278,6 +278,7 @@ bool reachedCheckpoint = false;
     () async {gotHit = false;});
         
   }
+  
   void _reachedChekpoint() async{
     reachedCheckpoint = true;
     if (game.playsound) FlameAudio.play('levelComplete.wav', volume: game.soundVolume);  
