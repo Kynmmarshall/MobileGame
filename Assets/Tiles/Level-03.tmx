@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="40" height="23" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="69">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="40" height="23" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="76">
  <tileset firstgid="1" source="pixel adventure.tsx"/>
+ <tileset firstgid="243" source="pixel adventure.tsx"/>
  <objectgroup id="2" name="SpawnPoints">
-  <object id="2" name="Player" type="Player" x="48" y="176" width="32" height="36.1137"/>
-  <object id="3" x="32" y="32" width="560" height="16"/>
-  <object id="4" x="32" y="48" width="16" height="304"/>
-  <object id="5" x="32" y="336" width="560" height="16"/>
+  <object id="2" name="Player" type="Player" x="64" y="176" width="32" height="36.1137"/>
   <object id="34" name="Bananas" type="Fruits" x="528" y="176" width="32" height="32"/>
   <object id="60" name="Melon" type="Fruits" x="368" y="272" width="32" height="32"/>
   <object id="54" name="Melon" type="Fruits" x="304" y="112" width="32" height="32"/>
@@ -23,28 +21,24 @@
   <object id="43" name="Kiwi" type="Fruits" x="256" y="256" width="32" height="32"/>
   <object id="39" name="Apple" type="Fruits" x="352" y="64" width="32" height="32"/>
   <object id="59" name="Apple" type="Fruits" x="352" y="256" width="32" height="32"/>
-  <object id="66" type="Saw" x="352" y="96" width="32" height="32">
+  <object id="66" type="Saw" x="224" y="96" width="32" height="32">
    <properties>
     <property name="isvertical" type="bool" value="false"/>
-    <property name="offsetneg" type="float" value="9"/>
-    <property name="offsetpos" type="float" value="9"/>
+    <property name="offsetneg" type="float" value="0"/>
+    <property name="offsetpos" type="float" value="16"/>
    </properties>
   </object>
-  <object id="68" type="Saw" x="368" y="96" width="32" height="32">
+  <object id="68" type="Saw" x="480" y="96" width="32" height="32">
    <properties>
     <property name="isvertical" type="bool" value="false"/>
-    <property name="offsetneg" type="float" value="8"/>
-    <property name="offsetpos" type="float" value="8"/>
+    <property name="offsetneg" type="float" value="16"/>
+    <property name="offsetpos" type="float" value="0"/>
    </properties>
   </object>
  </objectgroup>
  <objectgroup id="3" name="Collisions">
-  <object id="9" x="32" y="32" width="560" height="16"/>
-  <object id="10" x="32" y="32" width="16" height="320"/>
-  <object id="11" x="32" y="336" width="560" height="16"/>
   <object id="12" x="576" y="32" width="16" height="320"/>
   <object id="13" x="320" y="16"/>
-  <object id="18" x="48" y="272" width="16" height="16"/>
   <object id="20" x="240" y="208" width="32" height="32"/>
   <object id="52" x="272" y="176" width="32" height="32"/>
   <object id="53" x="304" y="144" width="32" height="32"/>
@@ -53,7 +47,6 @@
   <object id="61" x="544" y="48" width="32" height="32"/>
   <object id="63" x="336" y="96" width="16" height="80"/>
   <object id="64" x="400" y="96" width="16" height="80"/>
-  <object id="65" x="336.189" y="176.892" width="16" height="80" rotation="268.719"/>
   <object id="62" x="48" y="48" width="32" height="32"/>
   <object id="47" x="464" y="256" width="32" height="16"/>
   <object id="48" x="480" y="240" width="16" height="16"/>
@@ -63,6 +56,10 @@
   <object id="25" type="Platform" x="288" y="96" width="48" height="16"/>
   <object id="30" type="Platform" x="112" y="224" width="48" height="16"/>
   <object id="67" type="Platform" x="448" y="144" width="48" height="16"/>
+  <object id="69" x="32" y="32" width="16" height="320"/>
+  <object id="73" x="32" y="32" width="560" height="16"/>
+  <object id="74" x="336" y="160" width="80" height="16"/>
+  <object id="75" x="32" y="336" width="560" height="16"/>
  </objectgroup>
  <layer id="1" name="Background" width="40" height="23">
   <properties>
@@ -83,13 +80,13 @@
 112,112,113,77,77,77,0,49,49,0,0,0,0,0,0,49,0,36,37,49,49,49,49,49,49,0,0,0,0,0,49,49,49,49,49,49,111,112,112,112,
 112,112,113,77,77,77,0,0,0,0,0,0,49,49,49,49,49,58,59,49,49,49,49,49,49,49,49,0,0,0,49,49,49,49,0,0,111,112,112,112,
 112,112,113,7,8,9,0,0,49,49,49,49,0,49,49,36,37,49,49,0,0,0,0,0,49,49,49,49,49,49,49,7,8,8,8,9,111,112,112,112,
-112,112,113,29,30,30,0,40,41,42,49,49,49,0,0,58,59,0,0,0,49,49,49,49,49,49,49,49,49,49,49,30,30,30,30,31,111,112,112,112,
-112,112,113,29,30,30,72,72,72,0,0,0,49,72,72,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,35,30,30,30,30,31,111,112,112,112,
-112,112,113,29,30,30,72,72,72,72,49,0,0,72,72,49,49,49,49,49,49,49,49,49,49,49,49,49,49,7,8,9,30,30,30,31,111,112,112,112,
-112,112,113,29,30,30,7,8,9,72,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,7,8,9,30,30,30,30,30,31,111,112,112,112,
-112,112,113,29,30,30,30,30,30,72,72,72,49,49,49,0,0,0,0,0,0,0,0,0,49,49,72,30,30,30,30,30,30,30,30,31,111,112,112,112,
-112,112,113,29,30,16,30,30,30,8,9,72,49,49,49,49,0,0,0,0,0,0,0,0,49,72,72,30,30,30,30,30,30,30,30,31,111,112,112,112,
-112,112,113,51,35,38,52,35,52,52,52,72,72,72,49,49,0,0,0,0,0,0,0,0,49,72,72,52,52,52,52,52,52,52,52,53,111,112,112,112,
+112,112,113,29,30,273,0,40,41,42,49,49,49,0,0,58,59,0,0,0,49,49,49,49,49,49,49,49,49,49,49,271,30,30,30,31,111,112,112,112,
+112,112,113,29,272,273,313,72,72,0,0,0,49,72,72,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,35,30,30,30,30,31,111,112,112,112,
+112,112,113,271,272,273,313,72,72,72,49,0,0,72,72,49,49,49,49,49,49,49,49,49,49,49,49,49,49,7,8,9,30,30,30,31,111,112,112,112,
+112,112,113,271,272,273,250,8,9,72,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,7,8,9,30,30,30,30,30,31,111,112,112,112,
+112,112,113,271,272,273,272,30,273,72,72,72,49,49,49,0,0,0,0,0,0,0,0,0,49,49,72,271,30,30,30,30,30,30,30,31,111,112,112,112,
+112,112,113,29,30,16,30,30,30,8,9,72,49,49,49,49,0,0,0,0,0,0,0,0,49,72,72,271,30,30,30,30,30,30,30,31,111,112,112,112,
+112,112,113,51,35,38,52,35,52,52,273,72,72,72,49,49,0,0,0,0,0,0,0,0,49,72,72,293,52,52,52,52,52,52,52,53,111,112,112,112,
 112,112,114,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,115,112,112,112,
 112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112
 </data>
