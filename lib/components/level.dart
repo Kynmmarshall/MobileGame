@@ -95,10 +95,10 @@ class Level extends World with HasGameReference<PixelAdventure>{
           );
           add(checkpoint);
         case 'Enemies':
-         final offsetNeg = SpawnPoint.properties.getValue('offsetneg') ?? 0.0;
-            final offsetPos = SpawnPoint.properties.getValue('offsetpos') ?? 0.0;
+         final offsetNeg = SpawnPoint.properties.getValue('offsetneg') ;
+         final offsetPos = SpawnPoint.properties.getValue('offsetpos') ;
           final enemies = Enemies(
-            enemy : SpawnPoint.name,
+           enemy : SpawnPoint.name,
             position: Vector2( SpawnPoint.x ,  SpawnPoint.y),
             size: Vector2( SpawnPoint.width, SpawnPoint.height),
             offsetNeg : offsetNeg,
