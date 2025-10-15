@@ -296,6 +296,7 @@ bool reachedCheckpoint = false;
     Future.delayed(const Duration(seconds: 3),
     () {scale.x = 1;
         game.loadNextLevel();
+        isstart = true;
     });
   }
   

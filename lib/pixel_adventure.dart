@@ -17,7 +17,7 @@ with HasKeyboardHandlerComponents, DragCallbacks , HasCollisionDetection, TapCal
   Player player = Player(character: 'Ninja Frog');
   late JoystickComponent joystick;
   bool showControls = true;
-  bool playsound = true;
+  bool playsound = false;
   double soundVolume = 1.0;
   
   List<String> levelNames = ['Level-01', 'Level-03', 'Level-02'];
@@ -105,7 +105,6 @@ with HasKeyboardHandlerComponents, DragCallbacks , HasCollisionDetection, TapCal
     player: player,
     levelName: levelNames[currentLevelIndex], 
   );
-
     cam = CameraComponent.withFixedResolution(
       world: world,
        width: 640, 
