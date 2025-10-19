@@ -5,8 +5,7 @@ import 'package:flame/components.dart';
 import 'package:game/pixel_adventure.dart';
 
 enum State { idle, run, hit}
-class Enemies extends SpriteAnimationGroupComponent with HasGameReference<PixelAdventure>,
-CollisionCallbacks{
+class Enemies extends SpriteAnimationGroupComponent with HasGameReference<PixelAdventure>{
   
   final String enemy;
   final double offsetNeg;
@@ -56,7 +55,7 @@ CollisionCallbacks{
   }
 
   SpriteAnimation _CreateaAnimation(String animation, int amount){
-    return SpriteAnimation.fromFrameData( game.images.fromCache('Enemies/$enemy/$animation (32x32).png'), SpriteAnimationData.sequenced(
+    return SpriteAnimation.fromFrameData( game.images.fromCache('Enemies/$enemy/$animation (32x34).png'), SpriteAnimationData.sequenced(
       amount: amount, 
       stepTime: stepTime, 
       textureSize: Vector2(32, 34),

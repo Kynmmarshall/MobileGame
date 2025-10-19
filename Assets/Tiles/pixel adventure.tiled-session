@@ -81,6 +81,7 @@
         "C:/Users/kynm/Desktop/MobileGame/assets/tiles/Level-03.tmx"
     ],
     "project": "pixel adventure.tiled-project",
+    "property.type": "float",
     "recentFiles": [
         "pixel adventure.tsx",
         "C:/Users/kynm/Desktop/MobileGame/assets/tiles/Level-01.tmx",
