@@ -63,7 +63,7 @@ with HasKeyboardHandlerComponents, DragCallbacks , HasCollisionDetection, TapCal
           images.fromCache('Joystick components/joystick.png')
         ),
       ),
-      margin: const EdgeInsets.only(left: 32, bottom: 32),
+      margin: const EdgeInsets.only(left: 32, bottom: 16),
     );
     add(joystick);
   }

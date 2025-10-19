@@ -15,7 +15,7 @@
             "scale": 1.5,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 311.33333333333326,
+                "x": 311,
                 "y": 439.66666666666663
             }
         },
@@ -32,13 +32,13 @@
         },
         "C:/Users/kynm/Desktop/MobileGame/assets/tiles/Level-02.tmx": {
             "expandedObjectLayers": [
-                5,
-                4
+                4,
+                5
             ],
             "scale": 1.5229687499999998,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 319.7701856981636,
+                "x": 319.44187955268296,
                 "y": 184.1797476146507
             }
         },
@@ -49,7 +49,7 @@
             "scale": 1.5853125,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 329.2726197516263,
+                "x": 328.95722452197913,
                 "y": 193.96806623299824
             }
         },

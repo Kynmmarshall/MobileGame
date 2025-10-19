@@ -55,13 +55,15 @@ class Level extends World with HasGameReference<PixelAdventure>{
     final SpawnPointLayer=level.tileMap.getLayer<ObjectGroup>("SpawnPoints");
     
     if (SpawnPointLayer != null)
-    {
+    { print('Found SpawnPoints layer with ${SpawnPointLayer.objects.length} objects');
       for (final SpawnPoint in SpawnPointLayer.objects){
+      print('Found SpawnPoints layer with ${SpawnPointLayer.objects.length} objects');
       try {
       switch (SpawnPoint.class_){
 
         case 'Player':
           add(player);
+          print('Spawning player');
           player.position = Vector2( SpawnPoint.x, SpawnPoint.y);
           break;
 
@@ -95,6 +97,7 @@ class Level extends World with HasGameReference<PixelAdventure>{
           );
           add(checkpoint);
         case 'Enemies':
+          print('Spawning enemy: ${SpawnPoint.name}');
          final offsetNeg = SpawnPoint.properties.getValue('offsetneg') ;
          final offsetPos = SpawnPoint.properties.getValue('offsetpos') ;
           final enemies = Enemies(
@@ -105,7 +108,9 @@ class Level extends World with HasGameReference<PixelAdventure>{
             offsetPos : offsetPos
           );
           add(enemies);
+          print('Enemy added to game world');
         default: 
+          print('Unknown spawn point class: ${SpawnPoint.class_}');
       
       }
       } catch (e) {
@@ -115,6 +120,8 @@ class Level extends World with HasGameReference<PixelAdventure>{
               'name: ${SpawnPoint.name}');
       }
     }
+    }else{
+      print('SpawnPoints layer not found in TMX file!');
     }
 
   }

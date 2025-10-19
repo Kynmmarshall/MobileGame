@@ -26,8 +26,10 @@ class Enemies extends SpriteAnimationGroupComponent with HasGameReference<PixelA
   @override
   FutureOr<void> onLoad() {
     debugMode = true;
+    print('Loading enemy: $enemy');
     _loadAllAnimations(); 
     _calculateRange();
+    print('Enemy loaded at position: $position, range: $rangeNeg to $rangePos');
     return super.onLoad();
   }
 
@@ -44,14 +46,15 @@ class Enemies extends SpriteAnimationGroupComponent with HasGameReference<PixelA
   void _loadAllAnimations() {
     _idleAnimation = _CreateaAnimation('idle', 13);
     _runAnimation = _CreateaAnimation('run', 14); 
-    _hitAnimation = _CreateaAnimation('hit', 15)..loop = false;
+    _hitAnimation = _CreateaAnimation('hit', 5)..loop = false;
 
      animations ={
       State.idle : _idleAnimation,
       State.hit : _hitAnimation,
       State.run : _runAnimation
     };
-    current = State.idle;
+    current = State.run;
+    print('Animations loaded for $enemy');
   }
 
   SpriteAnimation _CreateaAnimation(String animation, int amount){
