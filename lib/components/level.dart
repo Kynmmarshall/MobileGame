@@ -57,7 +57,12 @@ class Level extends World with HasGameReference<PixelAdventure>{
     if (SpawnPointLayer != null)
     { print('Found SpawnPoints layer with ${SpawnPointLayer.objects.length} objects');
       for (final SpawnPoint in SpawnPointLayer.objects){
-      print('Found SpawnPoints layer with ${SpawnPointLayer.objects.length} objects');
+
+      print('Processing: class="${SpawnPoint.class_}", name="${SpawnPoint.name}", type="${SpawnPoint.type}"');
+      print('  Position: (${SpawnPoint.x}, ${SpawnPoint.y})');
+      print('  Size: ${SpawnPoint.width}x${SpawnPoint.height}');
+      print('  Properties: ${SpawnPoint.properties}');
+      
       try {
       switch (SpawnPoint.class_){
 
@@ -120,8 +125,6 @@ class Level extends World with HasGameReference<PixelAdventure>{
               'name: ${SpawnPoint.name}');
       }
     }
-    }else{
-      print('SpawnPoints layer not found in TMX file!');
     }
 
   }

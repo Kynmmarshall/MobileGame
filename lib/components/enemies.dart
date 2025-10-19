@@ -44,16 +44,16 @@ class Enemies extends SpriteAnimationGroupComponent with HasGameReference<PixelA
 
 
   void _loadAllAnimations() {
-    _idleAnimation = _CreateaAnimation('idle', 13);
-    _runAnimation = _CreateaAnimation('run', 14); 
-    _hitAnimation = _CreateaAnimation('hit', 5)..loop = false;
+    _idleAnimation = _CreateaAnimation('Idle', 13);
+    _runAnimation = _CreateaAnimation('Run', 14); 
+    _hitAnimation = _CreateaAnimation('Hit', 5)..loop = false;
 
      animations ={
       State.idle : _idleAnimation,
       State.hit : _hitAnimation,
       State.run : _runAnimation
     };
-    current = State.run;
+    current = State.idle;
     print('Animations loaded for $enemy');
   }
 

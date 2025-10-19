@@ -29,6 +29,7 @@ with HasKeyboardHandlerComponents, DragCallbacks , HasCollisionDetection, TapCal
     //locate all images into the cache
     print('Starting game load...');
     await images.loadAllImages();
+    
     print('Starting game load...');
     _loadLevel();
 
@@ -117,5 +118,5 @@ with HasKeyboardHandlerComponents, DragCallbacks , HasCollisionDetection, TapCal
    
   } 
 
-  
+
 }     
