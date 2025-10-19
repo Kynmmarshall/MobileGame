@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:game/components/checkpoint.dart';
 import 'package:game/components/collision_block.dart';
 import 'package:game/components/customHitBox.dart';
+import 'package:game/components/enemies.dart';
 import 'package:game/components/fruit.dart';
 import 'package:game/components/saw.dart';
 import 'package:game/components/utils.dart';
@@ -59,7 +60,7 @@ bool reachedCheckpoint = false;
   @override
   FutureOr<void> onLoad() {
     _loadAllAnimations();
-    debugMode = true;
+    //debugMode = true;
     add(RectangleHitbox(
       position: Vector2(hitbox.offsetX, hitbox.offsetY),
       size: Vector2(hitbox.width, hitbox.height)
@@ -105,7 +106,18 @@ bool reachedCheckpoint = false;
     return super.onKeyEvent(event, keysPressed);
   } 
 
-  void _loadAllAnimations() {
+  @override
+  void onCollisionStart(Set<Vector2> intersectionPoints, PositionComponent other) {
+    if(!reachedCheckpoint)
+    {if(other is Fruit) other.collidedWithPlayer();
+    if(other is Saw) _respawn();
+    if(other is Enemies) other.collidedWithPlayer();
+    if(other is Checkpoint && !reachedCheckpoint) _reachedChekpoint();}
+    super.onCollisionStart(intersectionPoints, other);
+  }
+
+
+   void _loadAllAnimations() {
     idleAnimation= _CreateaAnimation('Idle', 11);
     runningAnimation= _CreateaAnimation('Run', 12);
     jumpingAnimation= _CreateaAnimation('Jump', 1);
@@ -130,14 +142,6 @@ bool reachedCheckpoint = false;
  current = PlayerState.idle;
   
  }
-  @override
-  void onCollisionStart(Set<Vector2> intersectionPoints, PositionComponent other) {
-    if(!reachedCheckpoint)
-    {if(other is Fruit) other.collidedWithPlayer();
-    if(other is Saw) _respawn();
-    if(other is Checkpoint && !reachedCheckpoint) _reachedChekpoint();}
-    super.onCollisionStart(intersectionPoints, other);
-  }
 
  SpriteAnimation _CreateaAnimation(String animation, int amount){
     return SpriteAnimation.fromFrameData( game.images.fromCache('Main Characters/$character/$animation (32x32).png'), SpriteAnimationData.sequenced(
@@ -301,7 +305,9 @@ bool reachedCheckpoint = false;
     });
   }
   
-  
+  void collidedWithEnemy(){
+    _respawn();
+  }
   
   
 }

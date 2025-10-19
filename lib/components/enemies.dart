@@ -1,12 +1,15 @@
 import 'dart:async';
 import 'dart:ui';
 
+import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
+import 'package:flame_audio/flame_audio.dart';
 import 'package:game/components/player.dart';
 import 'package:game/pixel_adventure.dart';
 
 enum State { idle, run, hit}
-class Enemies extends SpriteAnimationGroupComponent with HasGameReference<PixelAdventure>{
+class Enemies extends SpriteAnimationGroupComponent 
+with HasGameReference<PixelAdventure>, CollisionCallbacks{
   
   final String enemy;
   final double offsetNeg;
@@ -22,6 +25,7 @@ class Enemies extends SpriteAnimationGroupComponent with HasGameReference<PixelA
   static const stepTime = 0.05;
   static const runSpeed = 80;
   static const tileSize = 16;
+  static const double _bounceHeight = 300;
 
   late final Player player;
 
@@ -30,12 +34,19 @@ class Enemies extends SpriteAnimationGroupComponent with HasGameReference<PixelA
   double rangePos = 0;
   double moveDirection = 1;
   double targetDirection = -1;
+  bool gotStumped = false;
 
 
   @override
   FutureOr<void> onLoad() {
-    debugMode = true;
+    //debugMode = true;
     player = game.player;
+    add(
+      RectangleHitbox(
+        position: Vector2(4, 6),
+        size: Vector2(24, 26),
+      )
+    );
     print('Loading enemy: $enemy');
     _loadAllAnimations(); 
     _calculateRange();
@@ -45,8 +56,8 @@ class Enemies extends SpriteAnimationGroupComponent with HasGameReference<PixelA
 
   @override
   void update(double dt) {
-    _updateState();
-    _movement(dt);
+   if (!gotStumped) {_updateState();
+    _movement(dt);}
     super.update(dt);
   }
 
@@ -118,6 +129,22 @@ class Enemies extends SpriteAnimationGroupComponent with HasGameReference<PixelA
   
     if ((moveDirection > 0 && scale.x > 0) || (moveDirection < 0 && scale.x < 0)){
       flipHorizontallyAroundCenter();
+    }
+  }
+
+  void collidedWithPlayer()  async{
+    if(player.velocity.y > 0 && player.y + player.height > position.y){
+      if(game.playsound){
+        FlameAudio.play('bounced.wav', volume: game.soundVolume);
+      }
+      gotStumped = true;
+      current = State.hit;
+      player.velocity.y = -_bounceHeight;
+      
+      await animationTicker ?.completed;
+      removeFromParent();
+    }else{
+      player.collidedWithEnemy();
     }
   }
 
