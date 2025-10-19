@@ -1,7 +1,8 @@
 import 'dart:async';
+import 'dart:ui';
 
-import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
+import 'package:game/components/player.dart';
 import 'package:game/pixel_adventure.dart';
 
 enum State { idle, run, hit}
@@ -18,14 +19,23 @@ class Enemies extends SpriteAnimationGroupComponent with HasGameReference<PixelA
     this.offsetPos = 0,
 });
 
-  final double stepTime = 0.05;
+  static const stepTime = 0.05;
+  static const runSpeed = 80;
+  static const tileSize = 16;
+
+  late final Player player;
+
+  Vector2 velocity = Vector2.zero();
   double rangeNeg = 0;
   double rangePos = 0;
-  static const tileSize = 16;
+  double moveDirection = 1;
+  double targetDirection = -1;
+
 
   @override
   FutureOr<void> onLoad() {
     debugMode = true;
+    player = game.player;
     print('Loading enemy: $enemy');
     _loadAllAnimations(); 
     _calculateRange();
@@ -35,7 +45,8 @@ class Enemies extends SpriteAnimationGroupComponent with HasGameReference<PixelA
 
   @override
   void update(double dt) {
-    _movement();
+    _updateState();
+    _movement(dt);
     super.update(dt);
   }
 
@@ -66,11 +77,48 @@ class Enemies extends SpriteAnimationGroupComponent with HasGameReference<PixelA
       );
  }
  
-  void _movement() {}
 
   void _calculateRange(){
-    rangeNeg = position.x - tileSize * offsetNeg;
-    rangePos = position.x + tileSize * offsetPos;
+    rangeNeg = position.x - offsetNeg * tileSize;
+    rangePos = position.x + offsetPos * tileSize;
+  }
+
+  void _movement(dt) {
+    //set default velocity to Zero
+    velocity.x = 0;
+
+    double playerOffset = (player.scale.x > 0)? 0 : -player.width;
+    double enemyOffset = (scale.x > 0)? 0 : -width;
+    
+
+    if(playerInrange()){
+      // determines where player is then follow him
+      targetDirection = (player.x + playerOffset < position.x + enemyOffset)? -1 : 1; 
+      velocity.x = targetDirection * runSpeed;
+    }
+    moveDirection = lerpDouble(moveDirection, targetDirection, 0.1) ?? 1;
+    
+    position.x += velocity.x * dt;
+  }
+
+
+  // method to check if player is in the chicken area or not
+  bool playerInrange(){
+    double playerOffset = (player.scale.x > 0)? 0 : -player.width;
+    
+     return player.x + playerOffset >= rangeNeg && 
+           player.x + playerOffset <= rangePos &&
+          player.y + player.height > position.y &&
+          player.y < position.y + height;
+  }
+  
+  // determines whether player must run or stay idle
+  void _updateState() {
+    current = (velocity.x != 0 ) ? State.run : State.idle;
+  
+    if ((moveDirection > 0 && scale.x > 0) || (moveDirection < 0 && scale.x < 0)){
+      flipHorizontallyAroundCenter();
+    }
   }
 
 }

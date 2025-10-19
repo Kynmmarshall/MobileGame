@@ -59,7 +59,7 @@ bool reachedCheckpoint = false;
   @override
   FutureOr<void> onLoad() {
     _loadAllAnimations();
-    //debugMode = true;
+    debugMode = true;
     add(RectangleHitbox(
       position: Vector2(hitbox.offsetX, hitbox.offsetY),
       size: Vector2(hitbox.width, hitbox.height)
