@@ -30,14 +30,15 @@ with HasKeyboardHandlerComponents, DragCallbacks , HasCollisionDetection, TapCal
     print('Starting game load...');
     await images.loadAllImages();
     
-    print('Starting game load...');
-    _loadLevel();
-
     if (showControls){
     print('Adding controls...');
     addjoystick();
     add(JumpButton());
     }
+
+    print('Starting game load...');
+    _loadLevel();
+
 
     print('Game load complete');
     return super.onLoad();
@@ -87,7 +88,7 @@ with HasKeyboardHandlerComponents, DragCallbacks , HasCollisionDetection, TapCal
   }
   
   void loadNextLevel() {
-    removeWhere((component) => component is Level);
+    removeWhere((component) => component is Level || component is Player);
     if(currentLevelIndex < levelNames.length - 1){
       currentLevelIndex ++;
       _loadLevel();
@@ -114,6 +115,12 @@ with HasKeyboardHandlerComponents, DragCallbacks , HasCollisionDetection, TapCal
     remove(cam);
   }
     addAll([cam,world]); 
+
+    if (showControls){
+    print('Adding controls...');
+    addjoystick();
+    add(JumpButton());
+    }
   });
    
   } 
