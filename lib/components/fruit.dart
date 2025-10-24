@@ -53,7 +53,7 @@ CollisionCallbacks{
 
       await Future.delayed(const Duration(milliseconds: 1));
       
-      if(game.playsound) game.playCollectSound();
+      //if(game.playsound) game.playCollectSound();
       animation = SpriteAnimation.fromFrameData(
       game.images.fromCache('Items/Fruits/Collected.png'), 
       SpriteAnimationData.sequenced(
