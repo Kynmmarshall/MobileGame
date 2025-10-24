@@ -5,7 +5,7 @@ import 'package:flame/events.dart';
 import 'package:flame/input.dart';
 import 'package:flame/game.dart';
 //import 'package:just_audio/just_audio.dart';
-import 'package:flame_audio/flame_audio.dart' hide AudioPlayer;
+import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/painting.dart';
 import 'package:game/components/jump_button.dart';
 import 'package:game/components/player.dart';
@@ -18,14 +18,21 @@ with HasKeyboardHandlerComponents, DragCallbacks , HasCollisionDetection, TapCal
   late CameraComponent cam;
   Player player = Player(character: 'Ninja Frog');
   late JoystickComponent joystick;
-  bool showControls = true;
-  bool playsound = true;
+  bool showControls = false;
+  bool playsound = false;
   double soundVolume = 1.0;
   bool _isLoading = false;
   bool _soundsLoaded = false;
+  bool play = false;
+
+  bool _jumpSoundPlaying = false;
+  bool _collectSoundPlaying = false;
+  bool _bounceSoundPlaying = false;
+  bool _appearSoundPlaying = false;
+  bool _levelCompleteSoundPlaying = false;
  // final AudioPlayer collectPlayer = AudioPlayer();
   
-  List<String> levelNames = ['Level-01', 'Level-02', 'Level-03'];
+  List<String> levelNames = ['Menu','Level-01', 'Level-02', 'Level-03'];
   int currentLevelIndex = 0;
 
   @override
@@ -34,8 +41,6 @@ with HasKeyboardHandlerComponents, DragCallbacks , HasCollisionDetection, TapCal
     //locate all images into the cache
     print('Starting game load...');
     await images.loadAllImages();
-
-    await _loadAllSounds();
 
     await FlameAudio.audioCache.loadAll([
       'jump.wav',
@@ -59,17 +64,6 @@ with HasKeyboardHandlerComponents, DragCallbacks , HasCollisionDetection, TapCal
     return super.onLoad();
   }
 
-  DateTime _lastCollectSound = DateTime.now();
-
-  Future<void> _loadAllSounds() async {
-  if (_soundsLoaded) return;
-  
-  // Pre-load all sound assets
-  //await collectPlayer.setAsset('assets/audio/collect.wav');
-  
-  _soundsLoaded = true;
-  print('All sounds pre-loaded successfully');
-}
 
   @override
   void update(double dt) {
@@ -79,39 +73,58 @@ with HasKeyboardHandlerComponents, DragCallbacks , HasCollisionDetection, TapCal
     super.update(dt);
   }
 
-  void playJumpSound() {
-  if (playsound) FlameAudio.play('jump.wav');
+void playJumpSound() {
+  if (!playsound || _jumpSoundPlaying) return;
+  
+  _jumpSoundPlaying = true;
+  FlameAudio.play('jump.wav').then((_) {
+    _jumpSoundPlaying = false;
+  });
 }
 
 void playCollectSound() {
-  if (!playsound) return;
+  if (!playsound || _collectSoundPlaying) return;
   
-  final now = DateTime.now();
-  // Only play collect sound every 100ms
-  if (now.difference(_lastCollectSound).inMilliseconds > 100) {
-    FlameAudio.play('collect.wav');
-    _lastCollectSound = now;
-  }
+  _collectSoundPlaying = true;
+  FlameAudio.play('collect.wav').then((_) {
+    _collectSoundPlaying = false;
+  });
 }
 
 void playBounceSound() {
-  if (playsound) FlameAudio.play('bounced.wav');
+  if (!playsound || _bounceSoundPlaying) return;
+  
+  _bounceSoundPlaying = true;
+  FlameAudio.play('bounced.wav').then((_) {
+    _bounceSoundPlaying = false;
+  });
 }
 
 void playAppearSound() {
-  if (playsound) FlameAudio.play('appear.wav');
+  if (!playsound || _appearSoundPlaying) return;
+  
+  _appearSoundPlaying = true;
+  FlameAudio.play('appear.wav').then((_) {
+    _appearSoundPlaying = false;
+  });
 }
 
 void playLevelCompleteSound() {
-  if (playsound) FlameAudio.play('levelComplete.wav');
+  if (!playsound || _levelCompleteSoundPlaying) return;
+  
+  _levelCompleteSoundPlaying = true;
+  FlameAudio.play('levelComplete.wav').then((_) {
+    _levelCompleteSoundPlaying = false;
+  });
 }
 
-//   void clearSoundBuffer() {
-//   collectPlayer.stop();
-//   // stop all other audio players
-//   collectPlayer.seek(Duration.zero);
-// }
-
+void resetAllSoundStates() {
+  _jumpSoundPlaying = false;
+  _collectSoundPlaying = false;
+  _bounceSoundPlaying = false;
+  _appearSoundPlaying = false;
+  _levelCompleteSoundPlaying = false;
+}
 
   void addjoystick() {
     joystick = JoystickComponent(
@@ -152,14 +165,14 @@ void playLevelCompleteSound() {
     if (_isLoading) return; // Prevent multiple simultaneous loads
   
     _isLoading = true;
-    // clearSoundBuffer();
+    resetAllSoundStates();
 
     removeWhere((component) => component is Level || component is Player);
     if(currentLevelIndex < levelNames.length - 1){
       currentLevelIndex ++;
     }
     else{
-      currentLevelIndex = 0;
+      currentLevelIndex = 1;
     }
     Future.delayed(const Duration(milliseconds: 200), () {
       _loadLevel();
@@ -176,7 +189,7 @@ void playLevelCompleteSound() {
     print('Loading level: ${levelNames[currentLevelIndex]}');
     Level world = Level(
     player: player,
-    levelName: levelNames[currentLevelIndex], 
+    levelName: levelNames[0], 
   );
     cam = CameraComponent.withFixedResolution(
       world: world,
