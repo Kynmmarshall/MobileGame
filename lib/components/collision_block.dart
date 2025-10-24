@@ -1,12 +1,51 @@
-import 'package:flame/components.dart';
+import 'dart:async';
 
-class CollisionBlock extends PositionComponent {
+import 'package:flame/collisions.dart';
+import 'package:flame/components.dart';
+import 'package:flame/events.dart';
+import 'package:flutter/services.dart';
+import 'package:game/pixel_adventure.dart';
+
+class CollisionBlock extends PositionComponent 
+with HasGameReference<PixelAdventure>, TapCallbacks {
   bool isPlatform;
+  String? type;
   CollisionBlock({
     position, 
     size,
     this.isPlatform = false,
+    this.type,
     }) : super(
       position: position, 
       size: size); //{debugMode = true;}
-}    
+
+  @override
+  FutureOr<void> onLoad() {
+    add(RectangleHitbox());
+    return super.onLoad();
+  }
+  
+  @override
+  void onTapDown(TapDownEvent event) {
+    switch(type){
+      case 'Play':
+        _startGame();
+        break;
+      case 'Exit':
+        _exitGame();
+      default:
+    }
+    super.onTapDown(event);
+  }
+
+  void _startGame() {
+    game.play = true;
+    game.loadNextLevel();
+    print("Play button tapped - starting game");
+  }
+
+  void _exitGame() {
+  SystemNavigator.pop(); // Exits the app completely
+  }
+  
+  }    

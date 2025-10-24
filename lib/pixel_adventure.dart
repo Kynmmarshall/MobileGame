@@ -18,7 +18,7 @@ with HasKeyboardHandlerComponents, DragCallbacks , HasCollisionDetection, TapCal
   late CameraComponent cam;
   Player player = Player(character: 'Ninja Frog');
   late JoystickComponent joystick;
-  bool showControls = false;
+  bool showControls = true;
   bool playsound = false;
   double soundVolume = 1.0;
   bool _isLoading = false;
@@ -30,14 +30,14 @@ with HasKeyboardHandlerComponents, DragCallbacks , HasCollisionDetection, TapCal
   bool _bounceSoundPlaying = false;
   bool _appearSoundPlaying = false;
   bool _levelCompleteSoundPlaying = false;
- // final AudioPlayer collectPlayer = AudioPlayer();
+  
   
   List<String> levelNames = ['Menu','Level-01', 'Level-02', 'Level-03'];
   int currentLevelIndex = 0;
 
   @override
   FutureOr<void> onLoad() async{
-    
+    //debugMode = true;
     //locate all images into the cache
     print('Starting game load...');
     await images.loadAllImages();
@@ -53,7 +53,7 @@ with HasKeyboardHandlerComponents, DragCallbacks , HasCollisionDetection, TapCal
     if (showControls){
     print('Adding controls...');
     addjoystick();
-    add(JumpButton());
+    if(play)add(JumpButton());
     }
 
     print('Starting game load...');
@@ -68,12 +68,12 @@ with HasKeyboardHandlerComponents, DragCallbacks , HasCollisionDetection, TapCal
   @override
   void update(double dt) {
 
-    if (showControls){
+    if (showControls && play){
     updatejoystick();}
     super.update(dt);
   }
 
-void playJumpSound() {
+  void playJumpSound() {
   if (!playsound || _jumpSoundPlaying) return;
   
   _jumpSoundPlaying = true;
@@ -82,7 +82,7 @@ void playJumpSound() {
   });
 }
 
-void playCollectSound() {
+  void playCollectSound() {
   if (!playsound || _collectSoundPlaying) return;
   
   _collectSoundPlaying = true;
@@ -91,7 +91,7 @@ void playCollectSound() {
   });
 }
 
-void playBounceSound() {
+  void playBounceSound() {
   if (!playsound || _bounceSoundPlaying) return;
   
   _bounceSoundPlaying = true;
@@ -100,7 +100,7 @@ void playBounceSound() {
   });
 }
 
-void playAppearSound() {
+  void playAppearSound() {
   if (!playsound || _appearSoundPlaying) return;
   
   _appearSoundPlaying = true;
@@ -109,7 +109,7 @@ void playAppearSound() {
   });
 }
 
-void playLevelCompleteSound() {
+  void playLevelCompleteSound() {
   if (!playsound || _levelCompleteSoundPlaying) return;
   
   _levelCompleteSoundPlaying = true;
@@ -118,7 +118,7 @@ void playLevelCompleteSound() {
   });
 }
 
-void resetAllSoundStates() {
+  void resetAllSoundStates() {
   _jumpSoundPlaying = false;
   _collectSoundPlaying = false;
   _bounceSoundPlaying = false;
@@ -141,7 +141,7 @@ void resetAllSoundStates() {
       ),
       margin: const EdgeInsets.only(left: 32, bottom: 16),
     );
-    add(joystick);
+    if(play)add(joystick);
   }
   
   void updatejoystick() {
@@ -189,7 +189,7 @@ void resetAllSoundStates() {
     print('Loading level: ${levelNames[currentLevelIndex]}');
     Level world = Level(
     player: player,
-    levelName: levelNames[0], 
+    levelName: levelNames[currentLevelIndex], 
   );
     cam = CameraComponent.withFixedResolution(
       world: world,
@@ -205,10 +205,10 @@ void resetAllSoundStates() {
         playsound = previousSoundState;
       });
 
-    if (showControls){
+    if (showControls && play){
     print('Adding controls...');
     addjoystick();
-    add(JumpButton());
+    if(play) add(JumpButton());
     }
   });
    

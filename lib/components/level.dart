@@ -47,7 +47,8 @@ class Level extends World with HasGameReference<PixelAdventure>{
           color: backgroundColor ?? 'Gray',
           position: Vector2(0, 0),
         );
-        add(backGroundTile);
+        
+        if(game.play) add(backGroundTile);
       
     }
 
@@ -147,7 +148,16 @@ class Level extends World with HasGameReference<PixelAdventure>{
           collisionBlocks.add(platform);
           add(platform);
           break;
-          default: 
+        case 'Touchable':
+          final option = CollisionBlock(
+            position: Vector2(collision.x, collision.y),
+            size: Vector2(collision.width, collision.height),
+            type: collision.name,
+          );
+          collisionBlocks.add(option);
+          add(option);
+          break;
+        default: 
           final block = CollisionBlock(
             position: Vector2(collision.x, collision.y),
             size: Vector2(collision.width, collision.height),
