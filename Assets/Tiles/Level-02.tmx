@@ -3,7 +3,7 @@
  <tileset firstgid="1" source="pixel adventure.tsx"/>
  <tileset firstgid="243" source="UI.tsx"/>
  <objectgroup id="4" name="SpawnPoints">
-  <object id="9" name="Player" type="Player" x="112" y="250" width="33.0868" height="34.925"/>
+  <object id="9" name="Player" type="Player" x="112" y="248.5" width="33.0868" height="34.925"/>
   <object id="38" name="Cherries" type="Fruits" x="64" y="96" width="32" height="32"/>
   <object id="41" name="Bananas" type="Fruits" x="64" y="144" width="32" height="32"/>
   <object id="42" name="Orange" type="Fruits" x="64" y="192" width="32" height="32"/>

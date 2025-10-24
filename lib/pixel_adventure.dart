@@ -54,7 +54,7 @@ with HasKeyboardHandlerComponents, DragCallbacks , HasCollisionDetection, TapCal
     if (showControls){
     print('Adding controls...');
     addjoystick();
-    if(play)add(JumpButton());
+    if(play) add(JumpButton());
     }
 
     print('Starting game load...');
