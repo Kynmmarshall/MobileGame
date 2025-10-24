@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="40" height="23" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="63">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="40" height="23" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="66">
  <properties>
   <property name="BackgroundColor" value="Brown"/>
  </properties>
  <tileset firstgid="1" source="pixel adventure.tsx"/>
+ <tileset firstgid="243" source="UI.tsx"/>
  <objectgroup id="4" name="SpawnPoints">
   <object id="9" name="Player" type="Player" x="80" y="250" width="33.0868" height="34.925"/>
   <object id="38" name="Cherries" type="Fruits" x="176" y="224" width="32" height="32"/>
@@ -39,15 +40,18 @@
   <object id="27" type="Platform" x="176" y="256" width="48" height="16"/>
   <object id="29" x="144" y="176" width="64" height="16"/>
   <object id="30" type="Platform" x="80" y="224" width="48" height="16"/>
+  <object id="63" name="Exit" type="Touchable" x="576" y="0" width="48" height="48"/>
+  <object id="64" name="Home" type="Touchable" x="0" y="0" width="48" height="48"/>
+  <object id="65" x="16" y="-240"/>
  </objectgroup>
  <layer id="1" name="Background" width="40" height="23">
   <properties>
    <property name="BackgroundColor" value="Brown"/>
   </properties>
   <data encoding="csv">
-112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,
-112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,
-112,112,92,134,134,134,134,134,134,134,134,134,134,134,134,134,134,134,134,134,134,134,134,134,134,134,134,134,134,134,134,134,134,134,134,134,93,112,112,112,
+243,244,245,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,249,250,251,112,
+252,253,254,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,112,258,259,260,112,
+261,262,263,134,134,134,134,134,134,134,134,134,134,134,134,134,134,134,134,134,134,134,134,134,134,134,134,134,134,134,134,134,134,134,134,134,267,268,269,112,
 112,112,113,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,111,112,112,112,
 112,112,113,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,111,112,112,112,
 112,112,113,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,111,112,112,112,

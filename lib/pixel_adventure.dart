@@ -19,11 +19,12 @@ with HasKeyboardHandlerComponents, DragCallbacks , HasCollisionDetection, TapCal
   Player player = Player(character: 'Ninja Frog');
   late JoystickComponent joystick;
   bool showControls = true;
-  bool playsound = false;
+  bool playsound = true;
   double soundVolume = 1.0;
   bool _isLoading = false;
   bool _soundsLoaded = false;
   bool play = false;
+  bool menu_screen = true;
 
   bool _jumpSoundPlaying = false;
   bool _collectSoundPlaying = false;
