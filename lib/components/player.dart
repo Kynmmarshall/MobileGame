@@ -219,7 +219,7 @@ bool reachedCheckpoint = false;
   }
   
   void _playerjump(double dt) {
-    if (game.playsound) FlameAudio.play('jump.wav', volume: game.soundVolume);
+    if (game.playsound) game.playJumpSound();
     velocity.y = -_jumpForce;
     position.y += velocity.y * dt;
     hasjumped = false;
@@ -259,7 +259,7 @@ bool reachedCheckpoint = false;
   }
   
   void _respawn() async {
-    if (game.playsound) FlameAudio.play('appear.wav', volume: game.soundVolume);
+    if (game.playsound) game.playAppearSound();
     gotHit = true;
     const cantMoveduration= Duration(milliseconds: 400);
     
@@ -285,7 +285,7 @@ bool reachedCheckpoint = false;
   
   void _reachedChekpoint() async{
     reachedCheckpoint = true;
-    if (game.playsound) FlameAudio.play('levelComplete.wav', volume: game.soundVolume);  
+    if (game.playsound) game.playLevelCompleteSound();  
     if(scale.x > 0){
     position = position - Vector2.all(32);}
     else if(scale.x < 0){

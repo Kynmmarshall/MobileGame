@@ -27,7 +27,9 @@ class Level extends World with HasGameReference<PixelAdventure>{
     add(level);
 
    _scrollingBackground();
+   await Future.delayed(const Duration(milliseconds: 50));
    _spawningObject();
+   await Future.delayed(const Duration(milliseconds: 50));
    _addCollisions();
     } catch (e) {
     print('Error loading level: $e');
@@ -51,7 +53,7 @@ class Level extends World with HasGameReference<PixelAdventure>{
 
   }
   
-  void _spawningObject() {
+  void _spawningObject() async{
     final SpawnPointLayer=level.tileMap.getLayer<ObjectGroup>("SpawnPoints");
     
     if (SpawnPointLayer != null)
@@ -118,6 +120,7 @@ class Level extends World with HasGameReference<PixelAdventure>{
           print('Unknown spawn point class: ${SpawnPoint.class_}');
       
       }
+      await Future.delayed(const Duration(milliseconds: 5));
       } catch (e) {
         print('Error spawning ${SpawnPoint.class_}: $e');
         print('SpawnPoint details - x: ${SpawnPoint.x}, y: ${SpawnPoint.y}, '
@@ -129,7 +132,7 @@ class Level extends World with HasGameReference<PixelAdventure>{
 
   }
   
-  void _addCollisions() {
+  void _addCollisions() async{
     final collisionsLayers = level.tileMap.getLayer<ObjectGroup>('Collisions');
     if (collisionsLayers != null)
     {
@@ -152,6 +155,7 @@ class Level extends World with HasGameReference<PixelAdventure>{
           collisionBlocks.add(block);
           add(block);
       }
+      await Future.delayed(const Duration(milliseconds: 2));
     }
     }
     player.collisionBlocks = collisionBlocks;

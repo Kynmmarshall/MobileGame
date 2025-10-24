@@ -50,7 +50,10 @@ CollisionCallbacks{
     
     if(!Collected){
       Collected = true;
-      if(game.playsound) FlameAudio.play('collect.wav', volume:  game.soundVolume);
+
+      await Future.delayed(const Duration(milliseconds: 1));
+      
+      if(game.playsound) game.playCollectSound();
       animation = SpriteAnimation.fromFrameData(
       game.images.fromCache('Items/Fruits/Collected.png'), 
       SpriteAnimationData.sequenced(
@@ -60,6 +63,7 @@ CollisionCallbacks{
       loop: false
       ),
       );
+    await Future.delayed(const Duration(milliseconds: 10));
     await animationTicker?.completed;
     removeFromParent();
     }

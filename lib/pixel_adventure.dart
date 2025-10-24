@@ -4,6 +4,8 @@ import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/input.dart';
 import 'package:flame/game.dart';
+//import 'package:just_audio/just_audio.dart';
+import 'package:flame_audio/flame_audio.dart' hide AudioPlayer;
 import 'package:flutter/painting.dart';
 import 'package:game/components/jump_button.dart';
 import 'package:game/components/player.dart';
@@ -19,6 +21,9 @@ with HasKeyboardHandlerComponents, DragCallbacks , HasCollisionDetection, TapCal
   bool showControls = true;
   bool playsound = true;
   double soundVolume = 1.0;
+  bool _isLoading = false;
+  bool _soundsLoaded = false;
+ // final AudioPlayer collectPlayer = AudioPlayer();
   
   List<String> levelNames = ['Level-01', 'Level-02', 'Level-03'];
   int currentLevelIndex = 0;
@@ -29,6 +34,16 @@ with HasKeyboardHandlerComponents, DragCallbacks , HasCollisionDetection, TapCal
     //locate all images into the cache
     print('Starting game load...');
     await images.loadAllImages();
+
+    await _loadAllSounds();
+
+    await FlameAudio.audioCache.loadAll([
+      'jump.wav',
+      'collect.wav',
+      'bounced.wav',
+      'appear.wav',
+      'levelComplete.wav',
+    ]);
     
     if (showControls){
     print('Adding controls...');
@@ -44,6 +59,18 @@ with HasKeyboardHandlerComponents, DragCallbacks , HasCollisionDetection, TapCal
     return super.onLoad();
   }
 
+  DateTime _lastCollectSound = DateTime.now();
+
+  Future<void> _loadAllSounds() async {
+  if (_soundsLoaded) return;
+  
+  // Pre-load all sound assets
+  //await collectPlayer.setAsset('assets/audio/collect.wav');
+  
+  _soundsLoaded = true;
+  print('All sounds pre-loaded successfully');
+}
+
   @override
   void update(double dt) {
 
@@ -51,6 +78,40 @@ with HasKeyboardHandlerComponents, DragCallbacks , HasCollisionDetection, TapCal
     updatejoystick();}
     super.update(dt);
   }
+
+  void playJumpSound() {
+  if (playsound) FlameAudio.play('jump.wav');
+}
+
+void playCollectSound() {
+  if (!playsound) return;
+  
+  final now = DateTime.now();
+  // Only play collect sound every 100ms
+  if (now.difference(_lastCollectSound).inMilliseconds > 100) {
+    FlameAudio.play('collect.wav');
+    _lastCollectSound = now;
+  }
+}
+
+void playBounceSound() {
+  if (playsound) FlameAudio.play('bounced.wav');
+}
+
+void playAppearSound() {
+  if (playsound) FlameAudio.play('appear.wav');
+}
+
+void playLevelCompleteSound() {
+  if (playsound) FlameAudio.play('levelComplete.wav');
+}
+
+//   void clearSoundBuffer() {
+//   collectPlayer.stop();
+//   // stop all other audio players
+//   collectPlayer.seek(Duration.zero);
+// }
+
 
   void addjoystick() {
     joystick = JoystickComponent(
@@ -88,18 +149,29 @@ with HasKeyboardHandlerComponents, DragCallbacks , HasCollisionDetection, TapCal
   }
   
   void loadNextLevel() {
+    if (_isLoading) return; // Prevent multiple simultaneous loads
+  
+    _isLoading = true;
+    // clearSoundBuffer();
+
     removeWhere((component) => component is Level || component is Player);
     if(currentLevelIndex < levelNames.length - 1){
       currentLevelIndex ++;
-      _loadLevel();
     }
     else{
       currentLevelIndex = 0;
-      _loadLevel();
     }
+    Future.delayed(const Duration(milliseconds: 200), () {
+      _loadLevel();
+      _isLoading = false;
+    });
+    
   }
 
   void _loadLevel() {
+
+    bool previousSoundState = playsound;
+    playsound = false;
   Future.delayed(const Duration(seconds: 1,),(){
     print('Loading level: ${levelNames[currentLevelIndex]}');
     Level world = Level(
@@ -115,6 +187,10 @@ with HasKeyboardHandlerComponents, DragCallbacks , HasCollisionDetection, TapCal
     remove(cam);
   }
     addAll([cam,world]); 
+
+    Future.delayed(const Duration(seconds: 1), () {
+        playsound = previousSoundState;
+      });
 
     if (showControls){
     print('Adding controls...');

@@ -5,7 +5,7 @@
  </properties>
  <tileset firstgid="1" source="pixel adventure.tsx"/>
  <objectgroup id="4" name="SpawnPoints">
-  <object id="9" name="Player" type="Player" x="80" y="256" width="33.0868" height="34.925"/>
+  <object id="9" name="Player" type="Player" x="80" y="250" width="33.0868" height="34.925"/>
   <object id="38" name="Cherries" type="Fruits" x="176" y="224" width="32" height="32"/>
   <object id="41" name="Cherries" type="Fruits" x="304" y="96" width="32" height="32"/>
   <object id="42" name="Orange" type="Fruits" x="96" y="192" width="32" height="32"/>

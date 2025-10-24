@@ -135,7 +135,7 @@ with HasGameReference<PixelAdventure>, CollisionCallbacks{
   void collidedWithPlayer()  async{
     if(player.velocity.y > 0 && player.y + player.height > position.y){
       if(game.playsound){
-        FlameAudio.play('bounced.wav', volume: game.soundVolume);
+        game.playBounceSound();
       }
       gotStumped = true;
       current = State.hit;
