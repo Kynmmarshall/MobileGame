@@ -8,7 +8,7 @@ import 'package:game/pixel_adventure.dart';
 class Touchable extends SpriteAnimationComponent with HasGameReference<PixelAdventure>, TapCallbacks{
 
   String? type;
-  final double stepTime = 0.3;
+  double stepTime = 0.25;
   final amount = 3;
   Vector2 spriteSize = Vector2(48, 48);
   
@@ -28,6 +28,7 @@ class Touchable extends SpriteAnimationComponent with HasGameReference<PixelAdve
     }
     else{
       spriteSize = Vector2(92, 32);
+      stepTime = 0.2;
     }
     animation = SpriteAnimation.fromFrameData( game.images.fromCache('Terrain/Touchables/$type.png'), SpriteAnimationData.sequenced(
       amount: amount, 
