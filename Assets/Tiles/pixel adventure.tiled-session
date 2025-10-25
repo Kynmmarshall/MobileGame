@@ -54,7 +54,7 @@
             "selectedLayer": 0,
             "viewCenter": {
                 "x": 247.33333333333337,
-                "y": 273.6666666666667
+                "y": 273.66666666666663
             }
         },
         "C:/Users/kynm/Desktop/MobileGame/assets/tiles/Level-03.tmx": {
@@ -94,7 +94,7 @@
             "selectedLayer": 0,
             "viewCenter": {
                 "x": 319.79160499674384,
-                "y": 217.10970339233913
+                "y": 183.76650287135163
             }
         },
         "Credits.tsx": {
@@ -103,13 +103,13 @@
         },
         "Level-01.tmx": {
             "expandedObjectLayers": [
-                3,
-                4
+                4,
+                3
             ],
             "scale": 2,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 221,
+                "x": 239.75,
                 "y": 161.25
             }
         },
@@ -118,7 +118,7 @@
             "selectedLayer": 0,
             "viewCenter": {
                 "x": 319.79160499674384,
-                "y": 183.76650287135158
+                "y": 183.76650287135163
             }
         },
         "Level-03.tmx": {
@@ -128,8 +128,8 @@
             "scale": 1.35671875,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 320.6265115743407,
-                "y": 183.89957387999542
+                "x": 348.2667280893701,
+                "y": 183.89957387999536
             }
         },
         "MainMenu.tsx": {
