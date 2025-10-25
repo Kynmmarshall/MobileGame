@@ -4,6 +4,7 @@ import 'package:flame/components.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 import 'package:game/components/Background_tile.dart';
 import 'package:game/components/Heart.dart';
+import 'package:game/components/Touchable.dart';
 import 'package:game/components/collision_block.dart';
 import 'package:game/components/enemies.dart';
 import 'package:game/components/fruit.dart';
@@ -128,6 +129,14 @@ class Level extends World with HasGameReference<PixelAdventure>{
           add(enemies);
           print('Enemy added to game world');
           break;
+        case 'Touchable':
+          final option = Touchable(
+            position: Vector2(SpawnPoint.x, SpawnPoint.y),
+            size: Vector2(SpawnPoint.width, SpawnPoint.height),
+            type: SpawnPoint.name,
+          );
+          add(option);
+          break;
         default: 
           print('Unknown spawn point class: ${SpawnPoint.class_}');
       
@@ -159,15 +168,7 @@ class Level extends World with HasGameReference<PixelAdventure>{
           collisionBlocks.add(platform);
           add(platform);
           break;
-        case 'Touchable':
-          final option = CollisionBlock(
-            position: Vector2(collision.x, collision.y),
-            size: Vector2(collision.width, collision.height),
-            type: collision.name,
-          );
-          collisionBlocks.add(option);
-          add(option);
-          break;
+        
         default: 
           final block = CollisionBlock(
             position: Vector2(collision.x, collision.y),

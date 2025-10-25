@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="40" height="23" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="62">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="40" height="23" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="64">
  <tileset firstgid="1" source="pixel adventure.tsx"/>
  <tileset firstgid="243" source="MainMenu.tsx"/>
  <objectgroup id="3" name="SpawnPoints">
-  <object id="46" name="Play" type="Touchable" x="236" y="132" width="160" height="34.4298"/>
-  <object id="49" name="Levels" type="Touchable" x="236" y="183" width="160" height="34.4298"/>
-  <object id="50" name="Credits" type="Touchable" x="241" y="236" width="157" height="35.4298"/>
-  <object id="51" name="Exit" type="Touchable" x="238" y="286" width="160" height="33.4298"/>
-  <object id="60" name="Home" type="Touchable" x="0" y="0" width="48" height="48"/>
-  <object id="61" name="Exit" type="Touchable" x="592" y="0" width="48" height="48"/>
+  <object id="46" name="Play" type="Touchable" x="272" y="134.5" width="92" height="32"/>
+  <object id="49" name="Levels" type="Touchable" x="269" y="184.5" width="92" height="32"/>
+  <object id="50" name="Credits" type="Touchable" x="269" y="237.5" width="92" height="32"/>
+  <object id="51" name="Exits" type="Touchable" x="271" y="285" width="92" height="32"/>
  </objectgroup>
  <layer id="1" name="Background" width="40" height="23">
   <properties>

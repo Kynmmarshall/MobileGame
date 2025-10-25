@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="40" height="23" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="71">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="40" height="23" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="77">
  <properties>
   <property name="BackgroundColor" value="Brown"/>
  </properties>
  <tileset firstgid="1" source="pixel adventure.tsx"/>
- <tileset firstgid="243" source="UI.tsx"/>
  <objectgroup id="4" name="SpawnPoints">
   <object id="9" name="Player" type="Player" x="79" y="245.5" width="33.0868" height="34.925"/>
   <object id="38" name="Cherries" type="Fruits" x="176" y="224" width="32" height="32"/>
@@ -21,6 +20,8 @@
   <object id="47" name="Apple" type="Fruits" x="432" y="112" width="32" height="32"/>
   <object id="61" type="Checkpoint" x="512" y="96" width="64" height="96"/>
   <object id="69" type="Hearts" x="240" y="0" width="144" height="48"/>
+  <object id="75" name="Home" type="Touchable" x="0" y="0" width="48" height="48"/>
+  <object id="76" name="Exit" type="Touchable" x="576" y="0" width="48" height="48"/>
  </objectgroup>
  <objectgroup id="3" name="Collisions">
   <object id="9" x="32" y="32" width="560" height="16"/>
@@ -40,8 +41,6 @@
   <object id="27" type="Platform" x="176" y="256" width="48" height="16"/>
   <object id="29" x="144" y="176" width="64" height="16"/>
   <object id="30" type="Platform" x="80" y="224" width="48" height="16"/>
-  <object id="63" name="Exit" type="Touchable" x="576" y="0" width="48" height="48"/>
-  <object id="64" name="Home" type="Touchable" x="0" y="0" width="48" height="48"/>
  </objectgroup>
  <layer id="1" name="Background" width="40" height="23">
   <properties>

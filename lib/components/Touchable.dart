@@ -8,8 +8,10 @@ import 'package:game/pixel_adventure.dart';
 class Touchable extends SpriteAnimationComponent with HasGameReference<PixelAdventure>, TapCallbacks{
 
   String? type;
-  final stepTime = 0.05;
-  final amount = 6;
+  final double stepTime = 0.3;
+  final amount = 3;
+  Vector2 spriteSize = Vector2(48, 48);
+  
   Touchable({
     position,
     size,
@@ -21,20 +23,17 @@ class Touchable extends SpriteAnimationComponent with HasGameReference<PixelAdve
   @override
   FutureOr<void> onLoad() {
     add(RectangleHitbox());
+    if(type == 'Home' || type == 'Exit'){
     animation = SpriteAnimation.fromFrameData( game.images.fromCache('Terrain/Touchables/$type.png'), SpriteAnimationData.sequenced(
       amount: amount, 
       stepTime: stepTime, 
-      textureSize: Vector2(32, 32),
+      textureSize: Vector2(48, 48),
       ),
       );
+      }
     return super.onLoad();
   }
 
-  @override
-  void update(double dt) {
-    
-    super.update(dt);
-  }
 
   @override
   void onTapDown(TapDownEvent event) {
@@ -44,14 +43,18 @@ class Touchable extends SpriteAnimationComponent with HasGameReference<PixelAdve
         break;
       case 'Exit':
         game.exitGame();
+        break;
       case 'Home':
         game.menu_screen = true;
         game.play = false;
         game.currentLevelIndex = -1;
         game.loadNextLevel();
+        break;
       case 'Credits':
+        game.menu_screen = false;
         game.currentLevelIndex = 0;
         game.loadNextLevel();
+        break;
       default:
     }
     super.onTapDown(event);

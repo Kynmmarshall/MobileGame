@@ -30,8 +30,9 @@ flutter:
     - assets/tiles/
     - assets/images/
     - assets/audio/
-    - assets/images/Terrain/
     - assets/images/Background/
+    - assets/images/Terrain/
+    - assets/images/Terrain/Touchables/
     - assets/images/Items/Fruits/
     - assets/images/Traps/Saw/
     - assets/images/Joystick components/

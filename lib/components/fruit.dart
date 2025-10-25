@@ -10,6 +10,7 @@ import 'package:game/pixel_adventure.dart';
 class Fruit extends SpriteAnimationComponent with HasGameReference<PixelAdventure>,
 CollisionCallbacks{
     final String fruit;
+    final double stepTime = 0.05;
     Fruit({
       this.fruit = 'Apple' ,
       position , 
@@ -17,7 +18,7 @@ CollisionCallbacks{
       super(
         position: position, 
         size: size);
-  final double stepTime = 0.05;
+  
   
   customHitBox fruitHitBox = customHitBox(
     offsetX: 10,
