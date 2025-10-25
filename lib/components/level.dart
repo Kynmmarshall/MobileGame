@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flame/components.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 import 'package:game/components/Background_tile.dart';
+import 'package:game/components/Heart.dart';
 import 'package:game/components/collision_block.dart';
 import 'package:game/components/enemies.dart';
 import 'package:game/components/fruit.dart';
@@ -104,6 +105,15 @@ class Level extends World with HasGameReference<PixelAdventure>{
             size: Vector2( SpawnPoint.width, SpawnPoint.height),
           );
           add(checkpoint);
+          break;
+        case 'Hearts':
+          final Hearts = Heart(
+           position: Vector2( SpawnPoint.x ,  SpawnPoint.y),
+           size: Vector2( SpawnPoint.width, SpawnPoint.height),
+          );
+          add(Hearts);
+          print("hearts added");
+          break;
         case 'Enemies':
           print('Spawning enemy: ${SpawnPoint.name}');
          final offsetNeg = SpawnPoint.properties.getValue('offsetneg') ;
@@ -117,6 +127,7 @@ class Level extends World with HasGameReference<PixelAdventure>{
           );
           add(enemies);
           print('Enemy added to game world');
+          break;
         default: 
           print('Unknown spawn point class: ${SpawnPoint.class_}');
       

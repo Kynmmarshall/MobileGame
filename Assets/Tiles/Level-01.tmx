@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="40" height="23" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="66">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="40" height="23" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="71">
  <properties>
   <property name="BackgroundColor" value="Brown"/>
  </properties>
@@ -20,13 +20,13 @@
   <object id="56" name="Pineapple" type="Fruits" x="144" y="144" width="32" height="32"/>
   <object id="47" name="Apple" type="Fruits" x="432" y="112" width="32" height="32"/>
   <object id="61" type="Checkpoint" x="512" y="96" width="64" height="96"/>
+  <object id="69" type="Hearts" x="240" y="0" width="144" height="48"/>
  </objectgroup>
  <objectgroup id="3" name="Collisions">
   <object id="9" x="32" y="32" width="560" height="16"/>
   <object id="10" x="32" y="32" width="16" height="320"/>
   <object id="11" x="32" y="336" width="560" height="16"/>
   <object id="12" x="576" y="32" width="16" height="320"/>
-  <object id="13" x="320" y="16"/>
   <object id="18" x="48" y="272" width="16" height="16"/>
   <object id="19" x="48" y="288" width="96" height="48"/>
   <object id="20" x="256" y="288" width="128" height="48"/>
@@ -42,7 +42,6 @@
   <object id="30" type="Platform" x="80" y="224" width="48" height="16"/>
   <object id="63" name="Exit" type="Touchable" x="576" y="0" width="48" height="48"/>
   <object id="64" name="Home" type="Touchable" x="0" y="0" width="48" height="48"/>
-  <object id="65" x="16" y="-240"/>
  </objectgroup>
  <layer id="1" name="Background" width="40" height="23">
   <properties>

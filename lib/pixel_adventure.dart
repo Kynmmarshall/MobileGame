@@ -25,6 +25,7 @@ with HasKeyboardHandlerComponents, DragCallbacks , HasCollisionDetection, TapCal
   bool _isLoading = false;
   bool _soundsLoaded = false;
   bool play = false;
+  int lives = 3;
   bool menu_screen = true;
 
   bool _jumpSoundPlaying = false;

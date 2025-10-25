@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="40" height="23" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="81">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="40" height="23" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="82">
  <tileset firstgid="1" source="pixel adventure.tsx"/>
  <tileset firstgid="243" source="UI.tsx"/>
  <objectgroup id="2" name="SpawnPoints">
@@ -43,6 +43,7 @@
    </properties>
   </object>
   <object id="77" type="Checkpoint" x="336" y="64" width="64" height="96"/>
+  <object id="81" type="Hearts" x="240" y="0" width="144" height="48"/>
  </objectgroup>
  <objectgroup id="3" name="Collisions">
   <object id="12" x="576" y="32" width="16" height="320"/>
