@@ -32,11 +32,14 @@ with HasGameReference<PixelAdventure>, TapCallbacks {
         _startGame();
         break;
       case 'Exit':
-        _exitGame();
+        game.exitGame();
       case 'Home':
         game.menu_screen = true;
         game.play = false;
         game.currentLevelIndex = -1;
+        game.loadNextLevel();
+      case 'Credits':
+        game.currentLevelIndex = 0;
         game.loadNextLevel();
       default:
     }
@@ -47,13 +50,10 @@ with HasGameReference<PixelAdventure>, TapCallbacks {
     if (game.play) return;
     game.play = true;
     game.menu_screen = false;
+    game.currentLevelIndex = 1;
     game.loadNextLevel();
     print("Play button tapped - starting game");
   }
 
-  void _exitGame() {
-  game.play = false;
-  SystemNavigator.pop(); // Exits the app completely
-  }
   
   }    

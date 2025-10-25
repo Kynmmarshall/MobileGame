@@ -1,11 +1,26 @@
 {
-    "activeFile": "Menu.tmx",
+    "activeFile": "C:/Users/kynm/Desktop/MobileGame/assets/tiles/Credits.tmx",
     "expandedProjectPaths": [
         "."
     ],
     "fileStates": {
         "C:/Users/kynm/Desktop/MobileGame/Assets/Tile/pixel adventure.tsx": {
             "scaleInDock": 1
+        },
+        "C:/Users/kynm/Desktop/MobileGame/assets/tiles/Credits.tmx": {
+            "expandedObjectLayers": [
+                3
+            ],
+            "scale": 1,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 276,
+                "y": 78.5
+            }
+        },
+        "C:/Users/kynm/Desktop/MobileGame/assets/tiles/Credits.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
         },
         "C:/Users/kynm/Desktop/MobileGame/assets/tiles/Level-01.tmx": {
             "expandedObjectLayers": [
@@ -35,11 +50,11 @@
                 4,
                 5
             ],
-            "scale": 1,
-            "selectedLayer": 1,
+            "scale": 1.5,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 319.5,
-                "y": 183.5
+                "x": 247.33333333333337,
+                "y": 273.6666666666667
             }
         },
         "C:/Users/kynm/Desktop/MobileGame/assets/tiles/Level-03.tmx": {
@@ -55,7 +70,7 @@
             }
         },
         "C:/Users/kynm/Desktop/MobileGame/assets/tiles/MainMenu.tsx": {
-            "scaleInDock": 1,
+            "scaleInDock": 0.75,
             "scaleInEditor": 1
         },
         "C:/Users/kynm/Desktop/MobileGame/assets/tiles/Menu.tmx": {
@@ -67,11 +82,23 @@
             }
         },
         "C:/Users/kynm/Desktop/MobileGame/assets/tiles/UI.tsx": {
-            "scaleInDock": 1.5,
+            "scaleInDock": 0.75,
             "scaleInEditor": 1
         },
         "C:/Users/kynm/Desktop/MobileGame/assets/tiles/pixel adventure.tsx": {
-            "scaleInDock": 1.5,
+            "scaleInDock": 0.75,
+            "scaleInEditor": 1
+        },
+        "Credits.tmx": {
+            "scale": 1.319609375,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 319.79160499674384,
+                "y": 217.10970339233913
+            }
+        },
+        "Credits.tsx": {
+            "scaleInDock": 0.5,
             "scaleInEditor": 1
         },
         "Level-01.tmx": {
@@ -86,6 +113,14 @@
                 "y": 161.25
             }
         },
+        "Level-02.tmx": {
+            "scale": 1.319609375,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 319.79160499674384,
+                "y": 183.76650287135158
+            }
+        },
         "Level-03.tmx": {
             "expandedObjectLayers": [
                 3
@@ -98,7 +133,7 @@
             }
         },
         "MainMenu.tsx": {
-            "scaleInDock": 1,
+            "scaleInDock": 0.75,
             "scaleInEditor": 1
         },
         "Menu.tmx": {
@@ -113,11 +148,11 @@
             }
         },
         "UI.tsx": {
-            "scaleInDock": 0.33,
+            "scaleInDock": 0.75,
             "scaleInEditor": 1
         },
         "pixel adventure.tsx": {
-            "scaleInDock": 1.5,
+            "scaleInDock": 0.75,
             "scaleInEditor": 1
         }
     },
@@ -129,24 +164,26 @@
         "Level-03.tmx",
         "Level-01.tmx",
         "C:/Users/kynm/Desktop/MobileGame/assets/tiles/UI.tsx",
-        "MainMenu.tsx",
-        "Menu.tmx"
+        "C:/Users/kynm/Desktop/MobileGame/assets/tiles/Credits.tmx",
+        "Level-02.tmx",
+        "Credits.tmx",
+        "Credits.tsx"
     ],
     "project": "pixel adventure.tiled-project",
     "property.type": "float",
     "recentFiles": [
-        "MainMenu.tsx",
         "pixel adventure.tsx",
         "C:/Users/kynm/Desktop/MobileGame/assets/tiles/Level-02.tmx",
         "Level-03.tmx",
         "Level-01.tmx",
         "C:/Users/kynm/Desktop/MobileGame/assets/tiles/UI.tsx",
-        "Menu.tmx",
-        "C:/Users/kynm/Desktop/MobileGame/assets/tiles/MainMenu.tsx",
-        "C:/Users/kynm/Desktop/MobileGame/assets/tiles/Menu.tmx",
-        "C:/Users/kynm/Desktop/MobileGame/assets/tiles/Level-03.tmx",
+        "Credits.tsx",
+        "Credits.tmx",
+        "Level-02.tmx",
+        "C:/Users/kynm/Desktop/MobileGame/assets/tiles/Credits.tmx",
         "UI.tsx",
-        "C:/Users/kynm/Desktop/MobileGame/assets/tiles/Level-01.tmx"
+        "C:/Users/kynm/Desktop/MobileGame/assets/tiles/Credits.tsx",
+        "C:/Users/kynm/Desktop/MobileGame/assets/tiles/MainMenu.tsx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {

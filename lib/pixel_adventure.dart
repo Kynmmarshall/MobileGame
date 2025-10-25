@@ -7,6 +7,7 @@ import 'package:flame/game.dart';
 //import 'package:just_audio/just_audio.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/painting.dart';
+import 'package:flutter/services.dart';
 import 'package:game/components/jump_button.dart';
 import 'package:game/components/player.dart';
 import 'package:game/components/level.dart';
@@ -19,7 +20,7 @@ with HasKeyboardHandlerComponents, DragCallbacks , HasCollisionDetection, TapCal
   Player player = Player(character: 'Ninja Frog');
   late JoystickComponent joystick;
   bool showControls = true;
-  bool playsound = true;
+  bool playsound = false;
   double soundVolume = 1.0;
   bool _isLoading = false;
   bool _soundsLoaded = false;
@@ -33,8 +34,11 @@ with HasKeyboardHandlerComponents, DragCallbacks , HasCollisionDetection, TapCal
   bool _levelCompleteSoundPlaying = false;
   
   
-  List<String> levelNames = ['Menu','Level-01', 'Level-02', 'Level-03'];
+  List<String> levelNames = ['Menu','Credits','Level-01', 'Level-02', 'Level-03'];
   int currentLevelIndex = 0;
+
+  bool isBGMPlaying = true;
+  String currentBGM = '';
 
   @override
   FutureOr<void> onLoad() async{
@@ -49,6 +53,7 @@ with HasKeyboardHandlerComponents, DragCallbacks , HasCollisionDetection, TapCal
       'bounced.wav',
       'appear.wav',
       'levelComplete.wav',
+      'bgm_menu.mp3',
     ]);
     
     if (showControls){
@@ -60,7 +65,7 @@ with HasKeyboardHandlerComponents, DragCallbacks , HasCollisionDetection, TapCal
     print('Starting game load...');
     _loadLevel();
 
-
+    playBGM('bgm_menu.mp3');
     print('Game load complete');
     return super.onLoad();
   }
@@ -72,6 +77,68 @@ with HasKeyboardHandlerComponents, DragCallbacks , HasCollisionDetection, TapCal
     if (showControls && play){
     updatejoystick();}
     super.update(dt);
+  }
+
+  @override
+  void onRemove() {
+    _disposeAllResources();
+    super.onRemove();
+  }
+
+  void playBGM(String bgmName) {
+    if (!playsound || currentBGM == bgmName) return;
+    
+    // Stop current BGM if playing
+    stopBGM();
+    
+    // Play new BGM
+    FlameAudio.bgm.play(bgmName, volume: soundVolume);
+    currentBGM = bgmName;
+    isBGMPlaying = true;
+    
+    print('Now playing: $bgmName');
+  }
+  
+  void stopBGM() {
+    if (isBGMPlaying) {
+      FlameAudio.bgm.stop();
+      isBGMPlaying = false;
+      currentBGM = '';
+    }
+  }
+
+  void _disposeAllResources() {
+    print('Disposing game resources...');
+    
+    // Clear all components
+    removeWhere((component) => true);
+    
+    // Clear images cache
+    images.clearCache();
+    
+    // Stop all audio
+    FlameAudio.bgm.stop();
+    
+    // Reset game state
+    _resetGameState();
+  }
+
+  void _resetGameState() {
+    play = false;
+    playsound = false;
+    currentLevelIndex = 0;
+    _isLoading = false;
+    resetAllSoundStates();
+  }
+
+  void exitGame() {
+    print('Exiting game and clearing RAM...');
+    
+    // Properly dispose before exiting
+    _disposeAllResources();
+    
+    // Exit the app
+    SystemNavigator.pop();
   }
 
   void playJumpSound() {
@@ -164,7 +231,6 @@ with HasKeyboardHandlerComponents, DragCallbacks , HasCollisionDetection, TapCal
   
   void loadNextLevel() {
     if (_isLoading) return; // Prevent multiple simultaneous loads
-  
     _isLoading = true;
     resetAllSoundStates();
 
@@ -173,7 +239,7 @@ with HasKeyboardHandlerComponents, DragCallbacks , HasCollisionDetection, TapCal
       currentLevelIndex ++;
     }
     else{
-      currentLevelIndex = 1;
+      currentLevelIndex = 2;
     }
     Future.delayed(const Duration(milliseconds: 200), () {
       _loadLevel();
