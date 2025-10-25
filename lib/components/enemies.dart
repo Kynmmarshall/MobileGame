@@ -138,7 +138,6 @@ with HasGameReference<PixelAdventure>, CollisionCallbacks{
         game.playBounceSound();
       }
       gotStumped = true;
-      game.lives-=1;
       current = State.hit;
       player.velocity.y = -_bounceHeight;
       
@@ -146,6 +145,7 @@ with HasGameReference<PixelAdventure>, CollisionCallbacks{
       removeFromParent();
     }else{
       player.collidedWithEnemy();
+      game.lives-=1;
     }
   }
 

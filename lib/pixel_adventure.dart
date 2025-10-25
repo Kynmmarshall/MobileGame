@@ -35,7 +35,7 @@ with HasKeyboardHandlerComponents, DragCallbacks , HasCollisionDetection, TapCal
   bool _levelCompleteSoundPlaying = false;
   
   
-  List<String> levelNames = ['Menu','Credits','Level-01', 'Level-02', 'Level-03'];
+  List<String> levelNames = [ 'Menu', 'Credits', 'GameOver', 'Level-01', 'Level-02', 'Level-03'];
   int currentLevelIndex = 0;
 
   bool isBGMPlaying = true;
@@ -76,7 +76,13 @@ with HasKeyboardHandlerComponents, DragCallbacks , HasCollisionDetection, TapCal
   void update(double dt) {
 
     if (showControls && play){
-    updatejoystick();}
+    updatejoystick();
+    }
+    if(lives <= 0){
+      currentLevelIndex = 2;
+      _loadLevel();
+      lives = 3;
+    }
     super.update(dt);
   }
 
@@ -240,7 +246,7 @@ with HasKeyboardHandlerComponents, DragCallbacks , HasCollisionDetection, TapCal
       currentLevelIndex ++;
     }
     else{
-      currentLevelIndex = 2;
+      currentLevelIndex = 3;
     }
     Future.delayed(const Duration(milliseconds: 200), () {
       _loadLevel();

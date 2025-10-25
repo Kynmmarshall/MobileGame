@@ -2,8 +2,8 @@ import 'dart:async';
 import 'package:flame/components.dart';
 import 'package:game/pixel_adventure.dart';
 
-class Heart extends SpriteComponent with HasGameReference<PixelAdventure>{
-  
+class Heart extends SpriteAnimationComponent with HasGameReference<PixelAdventure>{
+  final double stepTime = 0.2;
   Heart({
   position,
     size,
@@ -14,8 +14,7 @@ class Heart extends SpriteComponent with HasGameReference<PixelAdventure>{
 
   @override
   FutureOr<void> onLoad() {
-   // priority = 100000000;
-    sprite = Sprite(game.images.fromCache('Items/Heart/3.png'));     
+    _changeImages();    
     return super.onLoad();
   }
 
@@ -28,16 +27,25 @@ class Heart extends SpriteComponent with HasGameReference<PixelAdventure>{
   void _changeImages() {
     switch (game.lives){
       case 1:
-        sprite = Sprite(game.images.fromCache('Items/Heart/1.png'));
+        animation = _createAnimation(1 , 3);
         break;
       case 2:
-        sprite = Sprite(game.images.fromCache('Items/Heart/2.png'));
+        animation = _createAnimation(2 , 3);
         break;
       case 3:
-        sprite = Sprite(game.images.fromCache('Items/Heart/3.png'));
+        animation = _createAnimation(3 , 3);
         break;
       default:
-        sprite = Sprite(game.images.fromCache('Items/Heart/0.png'));
+        animation = _createAnimation(0 , 1);
     }
+  }
+  
+  SpriteAnimation _createAnimation(int i, int amount) {
+    return SpriteAnimation.fromFrameData( game.images.fromCache('Items/Heart/$i.png'), SpriteAnimationData.sequenced(
+      amount: amount, 
+      stepTime: stepTime, 
+      textureSize: Vector2(144, 48),
+      ),
+      ); 
   }
 }

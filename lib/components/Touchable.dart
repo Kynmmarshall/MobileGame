@@ -24,13 +24,18 @@ class Touchable extends SpriteAnimationComponent with HasGameReference<PixelAdve
   FutureOr<void> onLoad() {
     add(RectangleHitbox());
     if(type == 'Home' || type == 'Exit'){
+      spriteSize = Vector2(48, 48);
+    }
+    else{
+      spriteSize = Vector2(92, 32);
+    }
     animation = SpriteAnimation.fromFrameData( game.images.fromCache('Terrain/Touchables/$type.png'), SpriteAnimationData.sequenced(
       amount: amount, 
       stepTime: stepTime, 
-      textureSize: Vector2(48, 48),
+      textureSize: spriteSize,
       ),
       );
-      }
+      
     return super.onLoad();
   }
 
@@ -64,7 +69,7 @@ class Touchable extends SpriteAnimationComponent with HasGameReference<PixelAdve
     if (game.play) return;
     game.play = true;
     game.menu_screen = false;
-    game.currentLevelIndex = 1;
+    game.currentLevelIndex = 2;
     game.loadNextLevel();
     print("Play button tapped - starting game");
   }
