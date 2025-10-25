@@ -1,5 +1,9 @@
 {
-    "activeFile": "Level-01.tmx",
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "C:/Users/kynm/Desktop/MobileGame/assets/tiles/GameOver.tmx",
     "expandedProjectPaths": [
         "."
     ],
@@ -19,8 +23,19 @@
             }
         },
         "C:/Users/kynm/Desktop/MobileGame/assets/tiles/Credits.tsx": {
-            "scaleInDock": 1,
+            "scaleInDock": 0.5,
             "scaleInEditor": 1
+        },
+        "C:/Users/kynm/Desktop/MobileGame/assets/tiles/GameOver.tmx": {
+            "expandedObjectLayers": [
+                3
+            ],
+            "scale": 1,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 242,
+                "y": 316.5
+            }
         },
         "C:/Users/kynm/Desktop/MobileGame/assets/tiles/Level-01.tmx": {
             "expandedObjectLayers": [
@@ -47,14 +62,14 @@
         },
         "C:/Users/kynm/Desktop/MobileGame/assets/tiles/Level-02.tmx": {
             "expandedObjectLayers": [
-                5,
-                4
+                4,
+                5
             ],
             "scale": 1.5,
-            "selectedLayer": 0,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 339.3333333333333,
-                "y": 183.66666666666666
+                "x": 396,
+                "y": 184.99999999999997
             }
         },
         "C:/Users/kynm/Desktop/MobileGame/assets/tiles/Level-03.tmx": {
@@ -82,22 +97,28 @@
             }
         },
         "C:/Users/kynm/Desktop/MobileGame/assets/tiles/UI.tsx": {
+            "dynamicWrapping": true,
             "scaleInDock": 0.75,
             "scaleInEditor": 1
         },
         "C:/Users/kynm/Desktop/MobileGame/assets/tiles/pixel adventure.tsx": {
+            "dynamicWrapping": false,
             "scaleInDock": 0.75,
             "scaleInEditor": 1
         },
         "Credits.tmx": {
-            "scale": 1.319609375,
+            "expandedObjectLayers": [
+                3
+            ],
+            "scale": 1,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 239.84370374755787,
-                "y": 183.76650287135163
+                "x": 332,
+                "y": 317.5
             }
         },
         "Credits.tsx": {
+            "dynamicWrapping": false,
             "scaleInDock": 0.5,
             "scaleInEditor": 1
         },
@@ -106,19 +127,19 @@
                 3,
                 4
             ],
-            "scale": 1.5,
-            "selectedLayer": 0,
+            "scale": 1,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 299.66666666666663,
-                "y": 111.66666666666663
+                "x": 225,
+                "y": 219.5
             }
         },
         "Level-02.tmx": {
             "scale": 1.319609375,
-            "selectedLayer": 0,
+            "selectedLayer": 2,
             "viewCenter": {
                 "x": 319.7916049967438,
-                "y": 183.76650287135163
+                "y": 183.7665028713516
             }
         },
         "Level-03.tmx": {
@@ -126,14 +147,15 @@
                 3,
                 2
             ],
-            "scale": 1.35671875,
-            "selectedLayer": 0,
+            "scale": 1,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 348.26672808937,
-                "y": 183.8995738799954
+                "x": 405,
+                "y": 244.5
             }
         },
         "MainMenu.tsx": {
+            "dynamicWrapping": false,
             "scaleInDock": 0.75,
             "scaleInEditor": 1
         },
@@ -145,7 +167,7 @@
             "selectedLayer": 0,
             "viewCenter": {
                 "x": 278,
-                "y": 392.5
+                "y": 80.5
             }
         },
         "UI.tsx": {
@@ -153,6 +175,7 @@
             "scaleInEditor": 1
         },
         "pixel adventure.tsx": {
+            "dynamicWrapping": false,
             "scaleInDock": 0.75,
             "scaleInEditor": 1
         }
@@ -165,26 +188,28 @@
         "Level-03.tmx",
         "Level-01.tmx",
         "C:/Users/kynm/Desktop/MobileGame/assets/tiles/UI.tsx",
-        "C:/Users/kynm/Desktop/MobileGame/assets/tiles/Credits.tmx",
+        "C:/Users/kynm/Desktop/MobileGame/assets/tiles/GameOver.tmx",
         "Level-02.tmx",
         "Credits.tmx",
-        "Credits.tsx"
+        "Menu.tmx",
+        "Credits.tsx",
+        "MainMenu.tsx"
     ],
     "project": "pixel adventure.tiled-project",
     "property.type": "float",
     "recentFiles": [
+        "UI.tsx",
+        "C:/Users/kynm/Desktop/MobileGame/assets/tiles/UI.tsx",
+        "Credits.tsx",
+        "MainMenu.tsx",
         "pixel adventure.tsx",
         "C:/Users/kynm/Desktop/MobileGame/assets/tiles/Level-02.tmx",
         "Level-03.tmx",
-        "Credits.tsx",
+        "Level-01.tmx",
+        "Menu.tmx",
         "Credits.tmx",
         "Level-02.tmx",
-        "C:/Users/kynm/Desktop/MobileGame/assets/tiles/Credits.tmx",
-        "C:/Users/kynm/Desktop/MobileGame/assets/tiles/UI.tsx",
-        "Level-01.tmx",
-        "UI.tsx",
-        "C:/Users/kynm/Desktop/MobileGame/assets/tiles/Credits.tsx",
-        "C:/Users/kynm/Desktop/MobileGame/assets/tiles/MainMenu.tsx"
+        "C:/Users/kynm/Desktop/MobileGame/assets/tiles/GameOver.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {

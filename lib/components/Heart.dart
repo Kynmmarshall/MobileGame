@@ -37,6 +37,7 @@ class Heart extends SpriteComponent with HasGameReference<PixelAdventure>{
         sprite = Sprite(game.images.fromCache('Items/Heart/3.png'));
         break;
       default:
+        sprite = Sprite(game.images.fromCache('Items/Heart/0.png'));
     }
   }
 }

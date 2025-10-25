@@ -110,7 +110,9 @@ bool reachedCheckpoint = false;
   void onCollisionStart(Set<Vector2> intersectionPoints, PositionComponent other) {
     if(!reachedCheckpoint)
     {if(other is Fruit) other.collidedWithPlayer();
-    if(other is Saw) _respawn();
+    if(other is Saw) {
+      _respawn();
+      game.lives-=1;}
     if(other is Enemies) other.collidedWithPlayer();
     if(other is Checkpoint && !reachedCheckpoint) _reachedChekpoint();}
     super.onCollisionStart(intersectionPoints, other);
