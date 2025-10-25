@@ -22,6 +22,8 @@ class Level extends World with HasGameReference<PixelAdventure>{
   late TiledComponent level;
   List<CollisionBlock> collisionBlocks = [];
 
+  Checkpoint checkpoint =Checkpoint();
+
   @override
   FutureOr<void> onLoad() async{
     try{
@@ -40,6 +42,13 @@ class Level extends World with HasGameReference<PixelAdventure>{
     return super.onLoad();
   }
   
+  @override
+  void update(double dt) {
+    if(game.fruitsCollected >= game.Fruits){
+          add(checkpoint);}
+    super.update(dt);
+  }
+
   void _scrollingBackground() {
     final backgroundLayer = level.tileMap.getLayer("Background");
     
@@ -84,6 +93,8 @@ class Level extends World with HasGameReference<PixelAdventure>{
           size: Vector2( SpawnPoint.width, SpawnPoint.height),
           );
           add(fruits);
+          game.Fruits +=1;
+          print("fruits= ${game.Fruits}");
           break;
 
         case 'Saw':
@@ -101,11 +112,10 @@ class Level extends World with HasGameReference<PixelAdventure>{
             add(saw);
             break;
         case 'Checkpoint':
-          final checkpoint = Checkpoint(
+           checkpoint = Checkpoint(
             position: Vector2( SpawnPoint.x ,  SpawnPoint.y),
             size: Vector2( SpawnPoint.width, SpawnPoint.height),
           );
-          add(checkpoint);
           break;
         case 'Hearts':
           final Hearts = Heart(

@@ -51,7 +51,8 @@ CollisionCallbacks{
     
     if(!Collected){
       Collected = true;
-
+      game.fruitsCollected += 1;
+      print("fruitsCollected= ${game.fruitsCollected}");
       await Future.delayed(const Duration(milliseconds: 1));
       
       if(game.playsound) game.playCollectSound();

@@ -27,6 +27,7 @@ with HasKeyboardHandlerComponents, DragCallbacks , HasCollisionDetection, TapCal
   bool play = false;
   int lives = 3;
   int Fruits = 0;
+  int fruitsCollected = 0 ;
   bool menu_screen = true;
 
   bool _jumpSoundPlaying = false;
@@ -260,6 +261,8 @@ with HasKeyboardHandlerComponents, DragCallbacks , HasCollisionDetection, TapCal
 
     bool previousSoundState = playsound;
     playsound = false;
+    Fruits = 0;
+    fruitsCollected = 0 ;
   Future.delayed(const Duration(seconds: 1,),(){
     print('Loading level: ${levelNames[currentLevelIndex]}');
     Level world = Level(
